@@ -1,0 +1,7 @@
+{
+  "welcomeFile": "/index.html",
+  "routes":[{ 
+    "source":"^(.*)", 
+    "target": "$1"
+  }]
+}

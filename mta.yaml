@@ -1,0 +1,29 @@
+## Generated mta.yaml based on template version 0.2.0
+## appName = checkinapp
+## language=nodejs; multiTenant=false
+## approuter=
+_schema-version: '3.1'
+ID: checkinapp
+version: 0.1.0
+description: "checkinapp"
+parameters:
+  enable-parallel-deployments: true  
+build-parameters:
+  before-all:
+   - builder: custom
+     commands:
+      - npm install
+      - npx cds build\/all
+      
+
+modules:
+ # --------------------- SERVER MODULE ------------------------
+ - name: checkinapp-srv
+ # ------------------------------------------------------------
+   type: nodejs
+   path: public
+   properties:
+     EXIT: 1  # required by deploy.js task to terminate 
+
+
+

@@ -1,0 +1,1788 @@
+#2.0#2020 06 02 16:09:01.996#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.startEvent#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########http-nio-0.0.0.0-8080-exec-14###
+[XS2StartProcessListener] Process environment: {
+  "PLATFORM" : "{\n  \"name\": \"CLOUD-FOUNDRY\",\n  \"module-types\": [\n    { \"name\": \"custom\" },\n    { \"name\": \"javascript.nodejs\" },\n    { \"name\": \"java\", \"parameters\": { \"buildpack\": \"sap_java_buildpack\" }},\n    { \"name\": \"java.tomcat\", \"parameters\": { \"buildpack\": \"sap_java_buildpack\" }, \"properties\": { \"TARGET_RUNTIME\": \"tomcat\" }},\n    { \"name\": \"java.tomee\",  \"parameters\": { \"buildpack\": \"sap_java_buildpack\" }, \"properties\": { \"TARGET_RUNTIME\": \"tomee\" }},\n    { \"name\": \"com.sap.xs.hdi-dynamic\", \"parameters\": { \"buildpack\": \"nodejs_buildpack\" }},\n    { \"name\": \"com.sap.xs.hdi\", \"parameters\": { \"no-route\": true, \"no-start\": true, \"memory\": \"256M\", \"tasks\": [{ \"name\": \"deploy\", \"memory\": \"256M\", \"command\": \"npm start\" }], \"dependency-type\": \"hard\" }, \"properties\" : { \"EXIT\": 1 }},\n    { \"name\": \"com.sap.xs.hdi-zdm\", \"parameters\": { \"zdm-mode\": true, \"no-route\": true, \"no-start\": true, \"memory\": \"256M\", \"tasks\": [{ \"name\": \"deploy\", \"memory\": \"256M\", \"command\": \"npm start\" }], \"dependency-type\": \"hard\" }, \"properties\" : { \"EXIT\": 1, \"HDI_DEPLOY_MODE\": \"ZDM\" }},\n    { \"name\": \"com.sap.portal.site-content\", \"parameters\": { \"no-route\": true, \"memory\": \"256M\", \"execute-app\": true, \"success-marker\": \"STDOUT:Deployment of site content to .* done.*\", \"failure-marker\": \"STDERR:Deployment of site content to .* failed.*\", \"stop-app\": true, \"check-deploy-id\": true, \"dependency-type\": \"hard\", \"health-check-type\": \"none\" }},\n    { \"name\": \"com.sap.portal.content\", \"parameters\": { \"no-route\": true, \"no-start\": true, \"memory\": \"256M\", \"tasks\": [{ \"name\": \"deploy\", \"memory\": \"256M\", \"command\": \"npm start\" }], \"dependency-type\": \"hard\" }, \"properties\" : { \"EXIT\": 1 }},\n    { \"name\": \"com.sap.xs.dwf\", \"parameters\": { \"no-route\": true, \"memory\": \"256M\", \"execute-app\": true, \"success-marker\": \"STDOUT:The deployment of DWF content to .* container finished successfully .*\", \"failure-marker\": \"STDERR:The deployment of DWF content to .* container failed .*\", \"stop-app\": true, \"check-deploy-id\": true, \"dependency-type\": \"hard\", \"health-check-type\": \"none\" }},\n    { \"name\": \"business-logging\", \"parameters\": { \"no-route\": true, \"memory\": \"256M\", \"execute-app\": true, \"success-marker\": \"STDOUT:Deployment of content deployer done.\", \"failure-marker\": \"STDERR:Deployment of content deployer failed.\", \"stop-app\": true, \"health-check-type\": \"none\" }},\n    { \"name\": \"com.sap.business-logging.content\", \"parameters\": { \"no-route\": true, \"no-start\": true, \"memory\": \"256M\", \"tasks\": [{ \"name\": \"deploy\", \"memory\": \"256M\", \"command\": \"npm start\" }], \"dependency-type\": \"hard\" }, \"properties\" : { \"EXIT\": 1 }},\n    { \"name\": \"com.sap.html5.application-content\", \"parameters\": { \"no-route\": true, \"memory\": \"256M\", \"execute-app\": true, \"success-marker\": \"STDOUT:Deployment of html5 application content done.*\", \"failure-marker\": \"STDERR:Deployment of html5 application content failed.*\", \"stop-app\": true, \"check-deploy-id\": true, \"dependency-type\": \"hard\", \"health-check-type\": \"none\" }}, \n    { \"name\": \"com.sap.html5.application.content\", \"parameters\": { \"no-route\": true, \"no-start\": true, \"memory\": \"256M\", \"tasks\": [{ \"name\": \"deploy\", \"memory\": \"256M\", \"command\": \"npm start\" }], \"dependency-type\": \"hard\" }, \"properties\" : { \"EXIT\": 1 }},\n    { \"name\": \"staticfile\", \"parameters\": { \"buildpack\": \"staticfile_buildpack\" }},\n    { \"name\": \"ruby\", \"parameters\": { \"buildpack\": \"ruby_buildpack\" }},\n    { \"name\": \"nodejs\", \"parameters\": { \"buildpack\": \"nodejs_buildpack\" }},\n    { \"name\": \"go\", \"parameters\": { \"buildpack\": \"go_buildpack\" }},\n    { \"name\": \"python\", \"parameters\": { \"buildpack\": \"python_buildpack\" }},\n    { \"name\": \"php\", \"parameters\": { \"buildpack\": \"php_buildpack\" }},\n    { \"name\": \"binary\", \"parameters\": { \"buildpack\": \"binary_buildpack\" }},\n    { \"name\": \"dotnet_core\", \"parameters\": { \"buildpack\": \"dotnet_core_buildpack\" }},\n    { \"name\": \"application\" },\n    { \"name\": \"com.sap.application.content\" },\n    { \"name\": \"com.sap.integration\" }\n  ],\n  \"resource-types\": [\n    { \"name\": \"com.sap.xs.hdi-container\", \"parameters\": { \"service\": \"hana\", \"service-plan\": \"hdi-shared\", \"service-alternatives\": [\"hanatrial\"], \"type\": \"managed-service\" }},\n    { \"name\": \"com.sap.xs.hana-sbss\", \"parameters\": { \"service\": \"hana\", \"service-plan\": \"sbss\", \"service-alternatives\": [\"hanatrial\"], \"type\": \"managed-service\" }},\n    { \"name\": \"com.sap.xs.hana-schema\", \"parameters\": { \"service\": \"hana\", \"service-plan\": \"schema\", \"service-alternatives\": [\"hanatrial\"], \"type\": \"managed-service\" }},\n    { \"name\": \"com.sap.xs.hana-securestore\", \"parameters\": { \"service\": \"hana\", \"service-plan\": \"securestore\", \"service-alternatives\": [\"hanatrial\"], \"type\": \"managed-service\" }},\n    { \"name\": \"com.sap.xs.managed-hdi-container\", \"parameters\": { \"service\": \"managed-hana\", \"service-plan\": \"hdi-shared\", \"type\": \"managed-service\" }},\n    { \"name\": \"com.sap.xs.managed-hana-schema\", \"parameters\": { \"service\": \"managed-hana\", \"service-plan\": \"schema\", \"type\": \"managed-service\" }},\n    { \"name\": \"com.sap.xs.managed-hana-securestore\", \"parameters\": { \"service\": \"managed-hana\", \"service-plan\": \"securestore\", \"type\": \"managed-service\" }},\n    { \"name\": \"com.sap.xs.job-scheduler\", \"parameters\": { \"service\": \"jobscheduler\", \"service-plan\": \"lite\", \"type\": \"managed-service\" }},\n    { \"name\": \"com.sap.xs.fs\", \"parameters\": { \"service\": \"fs-storage\", \"service-plan\": \"lite\", \"type\": \"managed-service\" }},\n    { \"name\": \"com.sap.xs.uaa\", \"parameters\": { \"service\": \"xsuaa\", \"service-plan\": \"application\", \"type\": \"managed-service\" }},\n    { \"name\": \"com.sap.xs.uaa-space\", \"parameters\": { \"service\": \"xsuaa\", \"service-plan\": \"application\", \"type\": \"managed-service\" }},\n    { \"name\": \"com.sap.xs.uaa-devuser\", \"parameters\": { \"service\": \"xsuaa\", \"service-plan\": \"application\", \"type\": \"managed-service\" }},\n    { \"name\": \"com.sap.xs.uaa-application\", \"parameters\": { \"service\": \"xsuaa\", \"service-plan\": \"application\", \"type\": \"managed-service\" }},\n    { \"name\": \"com.sap.xs.uaa-broker\", \"parameters\": { \"service\": \"xsuaa\", \"service-plan\": \"broker\", \"type\": \"managed-service\" }},\n    { \"name\": \"com.sap.xs.application-logs\", \"parameters\": { \"service\": \"application-logs\", \"service-plan\": \"lite\", \"ignore-update-errors\": true , \"type\": \"managed-service\" }},\n    { \"name\": \"com.sap.portal.site-host\", \"parameters\": { \"service\": \"portal-services\", \"service-plan\": \"site-host\", \"type\": \"managed-service\" }},\n    { \"name\": \"com.sap.portal.site-content\", \"parameters\": { \"service\": \"portal-services\", \"service-plan\": \"site-content\", \"type\": \"managed-service\" }},\n    { \"name\": \"com.sap.xs.dwf-edw-client\", \"parameters\": { \"service\": \"dwf\", \"service-plan\": \"edw-client\", \"type\": \"managed-service\"}},\n    { \"name\": \"com.sap.xs.auditlog\", \"parameters\": { \"service\": \"auditlog\", \"service-plan\": \"standard\", \"ignore-update-errors\": true , \"type\": \"managed-service\" }},\n    { \"name\": \"auditlog\", \"parameters\": { \"service\": \"auditlog\", \"service-plan\": \"standard\", \"ignore-update-errors\": true , \"type\": \"managed-service\" }},\n    { \"name\": \"org.mongodb\", \"parameters\": { \"service\": \"mongodb\", \"service-plan\": \"v3.0-dev\", \"type\": \"managed-service\" }},\n    { \"name\": \"mongodb\", \"parameters\": { \"service\": \"mongodb\", \"service-plan\": \"v3.0-dev\", \"type\": \"managed-service\" }},\n    { \"name\": \"org.postgresql\", \"parameters\": { \"service\": \"postgresql\", \"service-plan\": \"v9.4-dev\", \"type\": \"managed-service\" }},\n    { \"name\": \"postgresql\", \"parameters\": { \"service\": \"postgresql\", \"service-plan\": \"v9.4-dev\", \"type\": \"managed-service\" }},\n    { \"name\": \"com.rabbitmq\", \"parameters\": { \"service\": \"rabbitmq\", \"service-plan\": \"v3.6-dev\", \"type\": \"managed-service\" }},\n    { \"name\": \"rabbitmq\", \"parameters\": { \"service\": \"rabbitmq\", \"service-plan\": \"v3.6-dev\", \"type\": \"managed-service\" }},\n    { \"name\": \"io.redis\", \"parameters\": { \"service\": \"redis\", \"service-plan\": \"v3.0-dev\", \"type\": \"managed-service\" }},\n    { \"name\": \"redis\", \"parameters\": { \"service\": \"redis\", \"service-plan\": \"v3.0-dev\", \"type\": \"managed-service\" }},\n    { \"name\": \"com.influxdb\", \"parameters\": { \"service\": \"influxdb\", \"service-plan\": \"v0.13-container\", \"type\": \"managed-service\" }},\n    { \"name\": \"influxdb\", \"parameters\": { \"service\": \"influxdb\", \"service-plan\": \"v0.13-container\", \"type\": \"managed-service\" }},\n    { \"name\": \"org.cloudfoundry.user-provided-service\", \"parameters\": { \"type\": \"user-provided-service\" }},\n    { \"name\": \"org.cloudfoundry.managed-service\", \"parameters\": { \"type\": \"managed-service\" }},\n    { \"name\": \"org.cloudfoundry.existing-service\", \"parameters\": { \"type\": \"existing-service\" }},\n    { \"name\": \"org.cloudfoundry.existing-service-key\", \"parameters\": { \"type\": \"existing-service-key\" }},\n    { \"name\": \"mta-provided\", \"parameters\": { \"type\": \"mta-provides-dependency\" }},\n    { \"name\": \"configuration\", \"parameters\": { \"type\": \"configuration\" }},\n    { \"name\": \"autoscaler\", \"parameters\": { \"service\": \"autoscaler\", \"service-plan\": \"lite\", \"ignore-update-errors\": true , \"type\": \"managed-service\" }},\n    { \"name\": \"application-logs\", \"parameters\": { \"service\": \"application-logs\", \"service-plan\": \"lite\", \"ignore-update-errors\": true , \"type\": \"managed-service\" }},\n    { \"name\": \"connectivity\", \"parameters\": { \"service\": \"connectivity\", \"service-plan\": \"lite\", \"type\": \"managed-service\" }},\n    { \"name\": \"feature-flags\", \"parameters\": { \"service\": \"feature-flags\", \"service-plan\": \"lite\", \"type\": \"managed-service\" }},\n    { \"name\": \"metering\", \"parameters\": { \"service\": \"metering\", \"service-plan\": \"standard\", \"type\": \"managed-service\" }},\n    { \"name\": \"ml-foundation-services\", \"parameters\": { \"service\": \"ml-foundation-services\", \"service-plan\": \"lite\", \"type\": \"managed-service\" }},\n    { \"name\": \"objectstore\", \"parameters\": { \"service\": \"objectstore\", \"service-plan\": \"s3-standard\", \"type\": \"managed-service\" }},\n    { \"name\": \"destination\", \"parameters\": { \"service\": \"destination\", \"service-plan\": \"lite\", \"type\": \"managed-service\" }}\n  ]\n}\n",
+  "SKIP_SSL_VALIDATION" : "false",
+  "DB_TYPE" : "POSTGRESQL",
+  "CONTROLLER_CLIENT_THREAD_POOL_SIZE" : "64",
+  "XS_TYPE" : "CF",
+  "FLOWABLE_JOB_EXECUTOR_MAX_THREADS" : "64",
+  "VERSION" : "1.100.6",
+  "BASIC_AUTH_ENABLED" : "true",
+  "FLOWABLE_JOB_EXECUTOR_QUEUE_CAPACITY" : "8",
+  "CONTROLLER_CLIENT_CONNECTION_POOL_SIZE" : "192",
+  "GLOBAL_AUDITOR_USER" : "provisioned_user_xsa_deploy-serviceDSglobalAuditorUser",
+  "FLOWABLE_JOB_EXECUTOR_CORE_THREADS" : "32"
+}#
+
+#2.0#2020 06 02 16:09:01.997#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.startEvent#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########http-nio-0.0.0.0-8080-exec-14###
+[XS2StartProcessListener] Current user: gustavo.calixto@sap.com#
+
+#2.0#2020 06 02 16:09:01.998#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.startEvent#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########http-nio-0.0.0.0-8080-exec-14###
+[XS2StartProcessListener] Client space: DEV#
+
+#2.0#2020 06 02 16:09:01.998#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.startEvent#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########http-nio-0.0.0.0-8080-exec-14###
+[XS2StartProcessListener] Client org: SAP Presales Cloud (NEO/FOUNDRY)_sappsbr#
+
+#2.0#2020 06 02 16:09:01.998#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.startEvent#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########http-nio-0.0.0.0-8080-exec-14###
+[XS2StartProcessListener] Process variables: {
+  "abortOnError" : false,
+  "mtaId" : "checkinapp",
+  "keepFiles" : false,
+  "versionRule" : "SAME_HIGHER",
+  "verifyArchiveSignature" : false,
+  "gitSkipSsl" : false,
+  "failOnCrashed" : true,
+  "noFailOnMissingPermissions" : false,
+  "useNamespacesForServices" : true,
+  "startTimeout" : 3600,
+  "enableEnvDetection" : true,
+  "deleteServiceBrokers" : false,
+  "appArchiveId" : "c29e43a7-c293-476b-9cb5-b934a9499d6d",
+  "gitUri" : "",
+  "deleteServiceKeys" : false,
+  "noRestartSubscribedApps" : false,
+  "useNamespaces" : false,
+  "deleteServices" : false,
+  "noStart" : false
+}#
+
+#2.0#2020 06 02 16:09:02.040#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.validateParametersTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-15###
+[ValidateDeployParametersStep] Executing task "validateParametersTask" of process "5fcea7dd-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:09:02.040#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.validateParametersTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-15###
+[ValidateDeployParametersStep] Validating parameters...#
+
+#2.0#2020 06 02 16:09:02.041#Z#INFO#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.validateParametersTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-15###
+[ValidateDeployParametersStep] Deploying in org "SAP Presales Cloud (NEO/FOUNDRY)_sappsbr" and space "DEV"#
+
+#2.0#2020 06 02 16:09:02.046#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.validateParametersTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-15###
+[ValidateDeployParametersStep] Parameters validated#
+
+#2.0#2020 06 02 16:09:02.047#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.validateParametersTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-15###
+Step "Validate Parameters" finished#
+
+#2.0#2020 06 02 16:09:02.074#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.deleteRemainingFileParts#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-1###
+[DeleteRemainingFileParts] Executing task "deleteRemainingFileParts" of process "5fcea7dd-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:09:02.076#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.deleteRemainingFileParts#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-1###
+Step "Delete Remaining File Parts" finished#
+
+#2.0#2020 06 02 16:09:02.103#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.processArchiveTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-20###
+[XS2ProcessMtaArchiveStep] Executing task "processArchiveTask" of process "5fcea7dd-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:09:02.104#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.processArchiveTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-20###
+[XS2ProcessMtaArchiveStep] Processing MTA archive...#
+
+#2.0#2020 06 02 16:09:02.178#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.processArchiveTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-20###
+[XS2ProcessMtaArchiveStep] MTA Archive ID: c29e43a7-c293-476b-9cb5-b934a9499d6d#
+
+#2.0#2020 06 02 16:09:02.179#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.processArchiveTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-20###
+[XS2ProcessMtaArchiveStep] MTA Archive Modules: [checkinapp-srv]#
+
+#2.0#2020 06 02 16:09:02.179#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.processArchiveTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-20###
+[XS2ProcessMtaArchiveStep] MTA Archive Requires: []#
+
+#2.0#2020 06 02 16:09:02.179#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.processArchiveTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-20###
+[XS2ProcessMtaArchiveStep] MTA Archive Resources: []#
+
+#2.0#2020 06 02 16:09:02.188#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.processArchiveTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-20###
+[XS2ProcessMtaArchiveStep] MTA archive processed#
+
+#2.0#2020 06 02 16:09:02.189#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.processArchiveTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-20###
+Step "Process Archive" finished#
+
+#2.0#2020 06 02 16:09:02.223#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.processExtensionDescriptorsTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-8###
+[ProcessMtaExtensionDescriptorsStep] Executing task "processExtensionDescriptorsTask" of process "5fcea7dd-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:09:02.225#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.processExtensionDescriptorsTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-8###
+[ProcessMtaExtensionDescriptorsStep] Processing MTA extension descriptors...#
+
+#2.0#2020 06 02 16:09:02.225#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.processExtensionDescriptorsTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-8###
+[ProcessMtaExtensionDescriptorsStep] Extension descriptors: [ ]#
+
+#2.0#2020 06 02 16:09:02.225#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.processExtensionDescriptorsTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-8###
+[ProcessMtaExtensionDescriptorsStep] MTA extension descriptors processed#
+
+#2.0#2020 06 02 16:09:02.226#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.processExtensionDescriptorsTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-8###
+Step "Process Extension Descriptors" finished#
+
+#2.0#2020 06 02 16:09:02.260#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.detectSchemaVersionTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-4###
+[DetectMtaSchemaVersionStep] Executing task "detectSchemaVersionTask" of process "5fcea7dd-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:09:02.261#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.detectSchemaVersionTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-4###
+[DetectMtaSchemaVersionStep] Detecting MTA major schema version...#
+
+#2.0#2020 06 02 16:09:02.263#Z#INFO#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.detectSchemaVersionTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-4###
+[DetectMtaSchemaVersionStep] Detected MTA schema version: "3"#
+
+#2.0#2020 06 02 16:09:02.267#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.detectSchemaVersionTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-4###
+Step "Detect Schema Version" finished#
+
+#2.0#2020 06 02 16:09:02.302#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.mergeDescriptorsTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-7###
+[MergeDescriptorsStep] Executing task "mergeDescriptorsTask" of process "5fcea7dd-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:09:02.303#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.mergeDescriptorsTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-7###
+[MergeDescriptorsStep] Validating and merging descriptors...#
+
+#2.0#2020 06 02 16:09:02.305#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.mergeDescriptorsTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-7###
+[MergeDescriptorsStep] Merged deployment descriptor: {
+  "majorSchemaVersion" : 3,
+  "schemaVersion" : "3.1.0",
+  "id" : "checkinapp",
+  "version" : "0.1.0",
+  "modules" : [ {
+    "majorSchemaVersion" : 3,
+    "name" : "checkinapp-srv",
+    "type" : "javascript.nodejs",
+    "path" : "checkinapp-srv",
+    "properties" : {
+      "EXIT" : 1
+    },
+    "parameters" : { },
+    "requiredDependencies" : [ ],
+    "providedDependencies" : [ {
+      "majorSchemaVersion" : 3,
+      "name" : "checkinapp-srv",
+      "isPublic" : false,
+      "properties" : { },
+      "parameters" : { },
+      "propertiesMetadata" : {
+        "metadata" : { }
+      },
+      "parametersMetadata" : {
+        "metadata" : { }
+      }
+    } ],
+    "propertiesMetadata" : {
+      "metadata" : { }
+    },
+    "parametersMetadata" : {
+      "metadata" : { }
+    },
+    "hooks" : [ ]
+  } ],
+  "resources" : [ ],
+  "parameters" : {
+    "enable-parallel-deployments" : true
+  },
+  "parametersMetadata" : {
+    "metadata" : { }
+  }
+}#
+
+#2.0#2020 06 02 16:09:02.306#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.mergeDescriptorsTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-7###
+[MergeDescriptorsStep] Descriptors validated and merged#
+
+#2.0#2020 06 02 16:09:02.307#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.mergeDescriptorsTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-7###
+Step "Merge Descriptors" finished#
+
+#2.0#2020 06 02 16:09:02.333#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.detectDeployedMtaTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-12###
+[DetectDeployedMtaStep] Executing task "detectDeployedMtaTask" of process "5fcea7dd-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:09:02.335#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.detectDeployedMtaTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-12###
+[DetectDeployedMtaStep] Detecting deployed MTA...#
+
+#2.0#2020 06 02 16:09:02.335#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.detectDeployedMtaTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-12###
+[DetectDeployedMtaStep] Getting service instances by metadata label selector "mta_id=6f241bce2c11501ec88092ad83139d8f"...#
+
+#2.0#2020 06 02 16:09:02.458#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.detectDeployedMtaTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-12###
+[DetectDeployedMtaStep] Getting applications by metadata label selector "mta_id=6f241bce2c11501ec88092ad83139d8f"...#
+
+#2.0#2020 06 02 16:09:03.024#Z#INFO#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.detectDeployedMtaTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-12###
+[DetectDeployedMtaStep] Detected deployed MTA with ID "checkinapp" and version "0.1.0"#
+
+#2.0#2020 06 02 16:09:03.029#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.detectDeployedMtaTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-12###
+Step "Detect Deployed MTA" finished#
+
+#2.0#2020 06 02 16:09:03.059#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.collectSystemParametersTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-17###
+[CollectSystemParametersStep] Executing task "collectSystemParametersTask" of process "5fcea7dd-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:09:03.060#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.collectSystemParametersTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-17###
+[CollectSystemParametersStep] Collecting system parameters...#
+
+#2.0#2020 06 02 16:09:03.061#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.collectSystemParametersTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-17###
+[CollectSystemParametersStep] Getting default domain...#
+
+#2.0#2020 06 02 16:09:03.246#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.collectSystemParametersTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-17###
+[CollectSystemParametersStep] Default domain: cfapps.eu10.hana.ondemand.com#
+
+#2.0#2020 06 02 16:09:03.247#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.collectSystemParametersTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-17###
+[CollectSystemParametersStep] Checking for overwriting read-only parameters for mta with id: "checkinapp"#
+
+#2.0#2020 06 02 16:09:03.247#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.collectSystemParametersTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-17###
+[CollectSystemParametersStep] No read-only parameters are overwritten#
+
+#2.0#2020 06 02 16:09:03.247#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.collectSystemParametersTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-17###
+[CollectSystemParametersStep] Descriptor with system parameters: {
+  "majorSchemaVersion" : 3,
+  "schemaVersion" : "3.1.0",
+  "id" : "checkinapp",
+  "version" : "0.1.0",
+  "modules" : [ {
+    "majorSchemaVersion" : 3,
+    "name" : "checkinapp-srv",
+    "type" : "javascript.nodejs",
+    "path" : "checkinapp-srv",
+    "properties" : {
+      "EXIT" : 1
+    },
+    "parameters" : {
+      "default-url" : "${protocol}://${default-uri}",
+      "default-app-name" : "checkinapp-srv",
+      "generated-password" : "********",
+      "default-uri" : "${host}.${domain}",
+      "default-instances" : 1,
+      "instances" : "${default-instances}",
+      "default-host" : "sap-presales-cloud--neo-foundry--sappsbr-dev-checkinapp-srv",
+      "app-name" : "${default-app-name}",
+      "protocol" : "https",
+      "domain" : "${default-domain}",
+      "host" : "${default-host}",
+      "generated-user" : "********",
+      "timestamp" : "20200602160903"
+    },
+    "requiredDependencies" : [ ],
+    "providedDependencies" : [ {
+      "majorSchemaVersion" : 3,
+      "name" : "checkinapp-srv",
+      "isPublic" : false,
+      "properties" : { },
+      "parameters" : { },
+      "propertiesMetadata" : {
+        "metadata" : { }
+      },
+      "parametersMetadata" : {
+        "metadata" : { }
+      }
+    } ],
+    "propertiesMetadata" : {
+      "metadata" : { }
+    },
+    "parametersMetadata" : {
+      "metadata" : { }
+    },
+    "hooks" : [ ]
+  } ],
+  "resources" : [ ],
+  "parameters" : {
+    "authorization-url" : "********",
+    "org" : "SAP Presales Cloud (NEO/FOUNDRY)_sappsbr",
+    "deploy-target" : "SAP Presales Cloud (NEO/FOUNDRY)_sappsbr DEV",
+    "enable-parallel-deployments" : true,
+    "space" : "DEV",
+    "xs-api-url" : "https://api.cf.eu10.hana.ondemand.com",
+    "deploy-url" : "deploy-service.cfapps.eu10.hana.ondemand.com",
+    "xs-type" : "CF",
+    "default-domain" : "cfapps.eu10.hana.ondemand.com",
+    "xs-auth-url" : "********",
+    "user" : "********",
+    "controller-url" : "https://api.cf.eu10.hana.ondemand.com"
+  },
+  "parametersMetadata" : {
+    "metadata" : { }
+  }
+}#
+
+#2.0#2020 06 02 16:09:03.249#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.collectSystemParametersTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-17###
+[CollectSystemParametersStep] Version rule: SAME_HIGHER#
+
+#2.0#2020 06 02 16:09:03.249#Z#INFO#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.collectSystemParametersTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-17###
+[CollectSystemParametersStep] Detected new MTA version: "0.1.0"#
+
+#2.0#2020 06 02 16:09:03.254#Z#INFO#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.collectSystemParametersTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-17###
+[CollectSystemParametersStep] Deployed MTA version: "0.1.0"#
+
+#2.0#2020 06 02 16:09:03.258#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.collectSystemParametersTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-17###
+[CollectSystemParametersStep] MTA accepted for deployment#
+
+#2.0#2020 06 02 16:09:03.258#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.collectSystemParametersTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-17###
+[CollectSystemParametersStep] System parameters collected#
+
+#2.0#2020 06 02 16:09:03.259#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.collectSystemParametersTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-17###
+Step "Collect System Parameters" finished#
+
+#2.0#2020 06 02 16:09:03.290#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.processDescriptorTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-14###
+[XS2ProcessDescriptorStep] Executing task "processDescriptorTask" of process "5fcea7dd-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:09:03.291#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.processDescriptorTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-14###
+[XS2ProcessDescriptorStep] Resolved deployment descriptor with ZDM enhancements: {
+  "majorSchemaVersion" : 3,
+  "schemaVersion" : "3.1.0",
+  "id" : "checkinapp",
+  "version" : "0.1.0",
+  "modules" : [ {
+    "majorSchemaVersion" : 3,
+    "name" : "checkinapp-srv",
+    "type" : "javascript.nodejs",
+    "path" : "checkinapp-srv",
+    "properties" : {
+      "EXIT" : 1
+    },
+    "parameters" : {
+      "default-url" : "${protocol}://${default-uri}",
+      "default-app-name" : "checkinapp-srv",
+      "generated-password" : "********",
+      "default-uri" : "${host}.${domain}",
+      "default-instances" : 1,
+      "instances" : "${default-instances}",
+      "default-host" : "sap-presales-cloud--neo-foundry--sappsbr-dev-checkinapp-srv",
+      "app-name" : "${default-app-name}",
+      "protocol" : "https",
+      "domain" : "${default-domain}",
+      "host" : "${default-host}",
+      "generated-user" : "********",
+      "timestamp" : "20200602160903"
+    },
+    "requiredDependencies" : [ ],
+    "providedDependencies" : [ {
+      "majorSchemaVersion" : 3,
+      "name" : "checkinapp-srv",
+      "isPublic" : false,
+      "properties" : { },
+      "parameters" : { },
+      "propertiesMetadata" : {
+        "metadata" : { }
+      },
+      "parametersMetadata" : {
+        "metadata" : { }
+      }
+    } ],
+    "propertiesMetadata" : {
+      "metadata" : { }
+    },
+    "parametersMetadata" : {
+      "metadata" : { }
+    },
+    "hooks" : [ ]
+  } ],
+  "resources" : [ ],
+  "parameters" : {
+    "authorization-url" : "********",
+    "org" : "SAP Presales Cloud (NEO/FOUNDRY)_sappsbr",
+    "deploy-target" : "SAP Presales Cloud (NEO/FOUNDRY)_sappsbr DEV",
+    "enable-parallel-deployments" : true,
+    "space" : "DEV",
+    "xs-api-url" : "https://api.cf.eu10.hana.ondemand.com",
+    "deploy-url" : "deploy-service.cfapps.eu10.hana.ondemand.com",
+    "xs-type" : "CF",
+    "default-domain" : "cfapps.eu10.hana.ondemand.com",
+    "xs-auth-url" : "********",
+    "user" : "********",
+    "controller-url" : "https://api.cf.eu10.hana.ondemand.com"
+  },
+  "parametersMetadata" : {
+    "metadata" : { }
+  }
+}#
+
+#2.0#2020 06 02 16:09:03.293#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.processDescriptorTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-14###
+[XS2ProcessDescriptorStep] Resolving properties and parameters in merged descriptor...#
+
+#2.0#2020 06 02 16:09:03.294#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.processDescriptorTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-14###
+[XS2ProcessDescriptorStep] Subscriptions: [ ]#
+
+#2.0#2020 06 02 16:09:03.294#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.processDescriptorTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-14###
+[XS2ProcessDescriptorStep] MTA Modules: [checkinapp-srv]#
+
+#2.0#2020 06 02 16:09:03.295#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.processDescriptorTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-14###
+[XS2ProcessDescriptorStep] Resolved deployment descriptor: {
+  "majorSchemaVersion" : 3,
+  "schemaVersion" : "3.1.0",
+  "id" : "checkinapp",
+  "version" : "0.1.0",
+  "modules" : [ {
+    "majorSchemaVersion" : 3,
+    "name" : "checkinapp-srv",
+    "type" : "javascript.nodejs",
+    "path" : "checkinapp-srv",
+    "properties" : {
+      "EXIT" : 1
+    },
+    "parameters" : {
+      "default-url" : "https://sap-presales-cloud--neo-foundry--sappsbr-dev-checkinapp-srv.cfapps.eu10.hana.ondemand.com",
+      "default-app-name" : "checkinapp-srv",
+      "generated-password" : "********",
+      "default-uri" : "sap-presales-cloud--neo-foundry--sappsbr-dev-checkinapp-srv.cfapps.eu10.hana.ondemand.com",
+      "default-instances" : 1,
+      "instances" : 1,
+      "default-host" : "sap-presales-cloud--neo-foundry--sappsbr-dev-checkinapp-srv",
+      "app-name" : "checkinapp-srv",
+      "protocol" : "https",
+      "domain" : "cfapps.eu10.hana.ondemand.com",
+      "host" : "sap-presales-cloud--neo-foundry--sappsbr-dev-checkinapp-srv",
+      "generated-user" : "********",
+      "timestamp" : "20200602160903"
+    },
+    "requiredDependencies" : [ ],
+    "providedDependencies" : [ {
+      "majorSchemaVersion" : 3,
+      "name" : "checkinapp-srv",
+      "isPublic" : false,
+      "properties" : { },
+      "parameters" : { },
+      "propertiesMetadata" : {
+        "metadata" : { }
+      },
+      "parametersMetadata" : {
+        "metadata" : { }
+      }
+    } ],
+    "propertiesMetadata" : {
+      "metadata" : { }
+    },
+    "parametersMetadata" : {
+      "metadata" : { }
+    },
+    "hooks" : [ ]
+  } ],
+  "resources" : [ ],
+  "parameters" : {
+    "authorization-url" : "********",
+    "org" : "SAP Presales Cloud (NEO/FOUNDRY)_sappsbr",
+    "deploy-target" : "SAP Presales Cloud (NEO/FOUNDRY)_sappsbr DEV",
+    "enable-parallel-deployments" : true,
+    "space" : "DEV",
+    "xs-api-url" : "https://api.cf.eu10.hana.ondemand.com",
+    "deploy-url" : "deploy-service.cfapps.eu10.hana.ondemand.com",
+    "xs-type" : "CF",
+    "default-domain" : "cfapps.eu10.hana.ondemand.com",
+    "xs-auth-url" : "********",
+    "user" : "********",
+    "controller-url" : "https://api.cf.eu10.hana.ondemand.com"
+  },
+  "parametersMetadata" : {
+    "metadata" : { }
+  }
+}#
+
+#2.0#2020 06 02 16:09:03.295#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.processDescriptorTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-14###
+[XS2ProcessDescriptorStep] Merged descriptor properties and parameters resolved#
+
+#2.0#2020 06 02 16:09:03.296#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.processDescriptorTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-14###
+Step "Process Descriptor Step" finished#
+
+#2.0#2020 06 02 16:09:03.327#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.buildDeployModelTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-5###
+[XS2BuildCloudDeployModelStep] Executing task "buildDeployModelTask" of process "5fcea7dd-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:09:03.329#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.buildDeployModelTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-5###
+[XS2BuildCloudDeployModelStep] Building cloud deployment model...#
+
+#2.0#2020 06 02 16:09:03.331#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.buildDeployModelTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-5###
+[XS2BuildCloudDeployModelStep] MTA archive modules: [checkinapp-srv]#
+
+#2.0#2020 06 02 16:09:03.331#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.buildDeployModelTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-5###
+[XS2BuildCloudDeployModelStep] Deployed modules: [checkinapp-srv]#
+
+#2.0#2020 06 02 16:09:03.332#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.buildDeployModelTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-5###
+[XS2BuildCloudDeployModelStep] MTA modules: [checkinapp-srv]#
+
+#2.0#2020 06 02 16:09:03.332#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.buildDeployModelTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-5###
+[XS2BuildCloudDeployModelStep] Service keys to create: { }#
+
+#2.0#2020 06 02 16:09:03.333#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.buildDeployModelTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-5###
+[XS2BuildCloudDeployModelStep] Modules to deploy: [{
+  "majorSchemaVersion" : 3,
+  "name" : "checkinapp-srv",
+  "type" : "javascript.nodejs",
+  "path" : "checkinapp-srv",
+  "properties" : {
+    "EXIT" : 1
+  },
+  "parameters" : {
+    "default-url" : "https://sap-presales-cloud--neo-foundry--sappsbr-dev-checkinapp-srv.cfapps.eu10.hana.ondemand.com",
+    "default-app-name" : "checkinapp-srv",
+    "generated-password" : "********",
+    "default-uri" : "sap-presales-cloud--neo-foundry--sappsbr-dev-checkinapp-srv.cfapps.eu10.hana.ondemand.com",
+    "default-instances" : 1,
+    "instances" : 1,
+    "default-host" : "sap-presales-cloud--neo-foundry--sappsbr-dev-checkinapp-srv",
+    "app-name" : "checkinapp-srv",
+    "protocol" : "https",
+    "dependency-type" : "soft",
+    "domain" : "cfapps.eu10.hana.ondemand.com",
+    "host" : "sap-presales-cloud--neo-foundry--sappsbr-dev-checkinapp-srv",
+    "generated-user" : "********",
+    "timestamp" : "20200602160903"
+  },
+  "requiredDependencies" : [ ],
+  "providedDependencies" : [ {
+    "majorSchemaVersion" : 3,
+    "name" : "checkinapp-srv",
+    "isPublic" : false,
+    "properties" : { },
+    "parameters" : { },
+    "propertiesMetadata" : {
+      "metadata" : { }
+    },
+    "parametersMetadata" : {
+      "metadata" : { }
+    }
+  } ],
+  "propertiesMetadata" : {
+    "metadata" : { }
+  },
+  "parametersMetadata" : {
+    "metadata" : { }
+  },
+  "deployedAfter" : [ ],
+  "hooks" : [ ]
+}]#
+
+#2.0#2020 06 02 16:09:03.334#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.buildDeployModelTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-5###
+[XS2BuildCloudDeployModelStep] Custom domains: []#
+
+#2.0#2020 06 02 16:09:03.334#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.buildDeployModelTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-5###
+[XS2BuildCloudDeployModelStep] Services to create: [ ]#
+
+#2.0#2020 06 02 16:09:03.334#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.buildDeployModelTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-5###
+[XS2BuildCloudDeployModelStep] Cloud deployment model built#
+
+#2.0#2020 06 02 16:09:03.336#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.buildDeployModelTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-5###
+Step "Build Deploy Model" finished#
+
+#2.0#2020 06 02 16:09:03.375#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.buildUndeployModelTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-32###
+[BuildCloudUndeployModelStep] Executing task "buildUndeployModelTask" of process "5fcea7dd-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:09:03.376#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.buildUndeployModelTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-32###
+[BuildCloudUndeployModelStep] Building cloud undeployment model...#
+
+#2.0#2020 06 02 16:09:03.381#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.buildUndeployModelTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-32###
+[BuildCloudUndeployModelStep] MTA modules: [checkinapp-srv]#
+
+#2.0#2020 06 02 16:09:03.381#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.buildUndeployModelTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-32###
+[BuildCloudUndeployModelStep] Modules to undeploy: [ ]#
+
+#2.0#2020 06 02 16:09:03.382#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.buildUndeployModelTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-32###
+[BuildCloudUndeployModelStep] Modules that wont be changed: {0}#
+
+#2.0#2020 06 02 16:09:03.383#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.buildUndeployModelTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-32###
+[BuildCloudUndeployModelStep] Subscriptions to delete: [ ]#
+
+#2.0#2020 06 02 16:09:03.384#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.buildUndeployModelTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-32###
+[BuildCloudUndeployModelStep] Cloud services to delete: []#
+
+#2.0#2020 06 02 16:09:03.384#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.buildUndeployModelTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-32###
+[BuildCloudUndeployModelStep] Cloud applications to undeploy: [ ]#
+
+#2.0#2020 06 02 16:09:03.385#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.buildUndeployModelTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-32###
+[BuildCloudUndeployModelStep] Cloud undeployment model built#
+
+#2.0#2020 06 02 16:09:03.386#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.buildUndeployModelTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-32###
+Step "Build Undeploy Model" finished#
+
+#2.0#2020 06 02 16:09:03.420#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.addDomainsTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-10###
+[AddDomainsStep] Executing task "addDomainsTask" of process "5fcea7dd-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:09:03.422#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.addDomainsTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-10###
+[AddDomainsStep] Custom domains: []#
+
+#2.0#2020 06 02 16:09:03.423#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.addDomainsTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-10###
+Step "Add Domains" finished#
+
+#2.0#2020 06 02 16:09:03.463#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.prepareModulesDeploymentTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-29###
+[PrepareModulesDeploymentStep] Executing task "prepareModulesDeploymentTask" of process "60aa8865-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:09:03.465#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.prepareModulesDeploymentTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-29###
+[PrepareModulesDeploymentStep] Preparing modules deployment...#
+
+#2.0#2020 06 02 16:09:03.471#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.prepareModulesDeploymentTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-29###
+Step "Prepare Modules Deployment" finished#
+
+#2.0#2020 06 02 16:09:03.508#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.computeNextModulesToDeployInParallel#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-23###
+[ComputeNextModulesStep] Executing task "computeNextModulesToDeployInParallel" of process "60aa8865-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:09:03.509#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.computeNextModulesToDeployInParallel#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-23###
+[ComputeNextModulesStep] Computing modules for next parallel iteration...#
+
+#2.0#2020 06 02 16:09:03.510#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.computeNextModulesToDeployInParallel#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-23###
+[ComputeNextModulesStep] Completed modules detected: []#
+
+#2.0#2020 06 02 16:09:03.510#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.computeNextModulesToDeployInParallel#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-23###
+[ComputeNextModulesStep] All modules for deploy detected: [checkinapp-srv]#
+
+#2.0#2020 06 02 16:09:03.510#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.computeNextModulesToDeployInParallel#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-23###
+[ComputeNextModulesStep] Modules not for deploy detected: []#
+
+#2.0#2020 06 02 16:09:03.511#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.computeNextModulesToDeployInParallel#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-23###
+[ComputeNextModulesStep] Computed modules for next parallel iteration: [ {
+  "majorSchemaVersion" : 3,
+  "name" : "checkinapp-srv",
+  "type" : "javascript.nodejs",
+  "path" : "checkinapp-srv",
+  "properties" : {
+    "EXIT" : 1
+  },
+  "parameters" : {
+    "app-name" : "checkinapp-srv",
+    "default-app-name" : "checkinapp-srv",
+    "default-host" : "sap-presales-cloud--neo-foundry--sappsbr-dev-checkinapp-srv",
+    "default-instances" : 1,
+    "default-uri" : "sap-presales-cloud--neo-foundry--sappsbr-dev-checkinapp-srv.cfapps.eu10.hana.ondemand.com",
+    "default-url" : "https://sap-presales-cloud--neo-foundry--sappsbr-dev-checkinapp-srv.cfapps.eu10.hana.ondemand.com",
+    "dependency-type" : "soft",
+    "domain" : "cfapps.eu10.hana.ondemand.com",
+    "generated-password" : "********",
+    "generated-user" : "********",
+    "host" : "sap-presales-cloud--neo-foundry--sappsbr-dev-checkinapp-srv",
+    "instances" : 1,
+    "protocol" : "https",
+    "timestamp" : "20200602160903"
+  },
+  "requiredDependencies" : [ ],
+  "providedDependencies" : [ {
+    "majorSchemaVersion" : 3,
+    "name" : "checkinapp-srv",
+    "isPublic" : false,
+    "properties" : { },
+    "parameters" : { },
+    "propertiesMetadata" : {
+      "metadata" : { }
+    },
+    "parametersMetadata" : {
+      "metadata" : { }
+    }
+  } ],
+  "propertiesMetadata" : {
+    "metadata" : { }
+  },
+  "parametersMetadata" : {
+    "metadata" : { }
+  },
+  "deployedAfter" : [ ],
+  "hooks" : [ ]
+} ]#
+
+#2.0#2020 06 02 16:09:03.512#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.computeNextModulesToDeployInParallel#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-23###
+Step "Compute Next Modules To Deploy" finished#
+
+#2.0#2020 06 02 16:09:03.645#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.reprocessDescriptorTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-3###
+[XS2ProcessDescriptorStep] Executing task "reprocessDescriptorTask" of process "60c1ba7b-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:09:03.647#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.reprocessDescriptorTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-3###
+[XS2ProcessDescriptorStep] Resolved deployment descriptor with ZDM enhancements: {
+  "majorSchemaVersion" : 3,
+  "schemaVersion" : "3.1.0",
+  "id" : "checkinapp",
+  "version" : "0.1.0",
+  "modules" : [ {
+    "majorSchemaVersion" : 3,
+    "name" : "checkinapp-srv",
+    "type" : "javascript.nodejs",
+    "path" : "checkinapp-srv",
+    "properties" : {
+      "EXIT" : 1
+    },
+    "parameters" : {
+      "default-url" : "${protocol}://${default-uri}",
+      "default-app-name" : "checkinapp-srv",
+      "generated-password" : "********",
+      "default-uri" : "${host}.${domain}",
+      "default-instances" : 1,
+      "instances" : "${default-instances}",
+      "default-host" : "sap-presales-cloud--neo-foundry--sappsbr-dev-checkinapp-srv",
+      "app-name" : "${default-app-name}",
+      "protocol" : "https",
+      "domain" : "${default-domain}",
+      "host" : "${default-host}",
+      "generated-user" : "********",
+      "timestamp" : "20200602160903"
+    },
+    "requiredDependencies" : [ ],
+    "providedDependencies" : [ {
+      "majorSchemaVersion" : 3,
+      "name" : "checkinapp-srv",
+      "isPublic" : false,
+      "properties" : { },
+      "parameters" : { },
+      "propertiesMetadata" : {
+        "metadata" : { }
+      },
+      "parametersMetadata" : {
+        "metadata" : { }
+      }
+    } ],
+    "propertiesMetadata" : {
+      "metadata" : { }
+    },
+    "parametersMetadata" : {
+      "metadata" : { }
+    },
+    "hooks" : [ ]
+  } ],
+  "resources" : [ ],
+  "parameters" : {
+    "authorization-url" : "********",
+    "org" : "SAP Presales Cloud (NEO/FOUNDRY)_sappsbr",
+    "deploy-target" : "SAP Presales Cloud (NEO/FOUNDRY)_sappsbr DEV",
+    "enable-parallel-deployments" : true,
+    "space" : "DEV",
+    "xs-api-url" : "https://api.cf.eu10.hana.ondemand.com",
+    "deploy-url" : "deploy-service.cfapps.eu10.hana.ondemand.com",
+    "xs-type" : "CF",
+    "default-domain" : "cfapps.eu10.hana.ondemand.com",
+    "xs-auth-url" : "********",
+    "user" : "********",
+    "controller-url" : "https://api.cf.eu10.hana.ondemand.com"
+  },
+  "parametersMetadata" : {
+    "metadata" : { }
+  }
+}#
+
+#2.0#2020 06 02 16:09:03.648#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.reprocessDescriptorTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-3###
+[XS2ProcessDescriptorStep] Resolving properties and parameters in merged descriptor...#
+
+#2.0#2020 06 02 16:09:03.649#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.reprocessDescriptorTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-3###
+[XS2ProcessDescriptorStep] Subscriptions: [ ]#
+
+#2.0#2020 06 02 16:09:03.653#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.reprocessDescriptorTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-3###
+[XS2ProcessDescriptorStep] MTA Modules: [checkinapp-srv]#
+
+#2.0#2020 06 02 16:09:03.656#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.reprocessDescriptorTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-3###
+[XS2ProcessDescriptorStep] Resolved deployment descriptor: {
+  "majorSchemaVersion" : 3,
+  "schemaVersion" : "3.1.0",
+  "id" : "checkinapp",
+  "version" : "0.1.0",
+  "modules" : [ {
+    "majorSchemaVersion" : 3,
+    "name" : "checkinapp-srv",
+    "type" : "javascript.nodejs",
+    "path" : "checkinapp-srv",
+    "properties" : {
+      "EXIT" : 1
+    },
+    "parameters" : {
+      "default-url" : "https://sap-presales-cloud--neo-foundry--sappsbr-dev-checkinapp-srv.cfapps.eu10.hana.ondemand.com",
+      "default-app-name" : "checkinapp-srv",
+      "generated-password" : "********",
+      "default-uri" : "sap-presales-cloud--neo-foundry--sappsbr-dev-checkinapp-srv.cfapps.eu10.hana.ondemand.com",
+      "default-instances" : 1,
+      "instances" : 1,
+      "default-host" : "sap-presales-cloud--neo-foundry--sappsbr-dev-checkinapp-srv",
+      "app-name" : "checkinapp-srv",
+      "protocol" : "https",
+      "domain" : "cfapps.eu10.hana.ondemand.com",
+      "host" : "sap-presales-cloud--neo-foundry--sappsbr-dev-checkinapp-srv",
+      "generated-user" : "********",
+      "timestamp" : "20200602160903"
+    },
+    "requiredDependencies" : [ ],
+    "providedDependencies" : [ {
+      "majorSchemaVersion" : 3,
+      "name" : "checkinapp-srv",
+      "isPublic" : false,
+      "properties" : { },
+      "parameters" : { },
+      "propertiesMetadata" : {
+        "metadata" : { }
+      },
+      "parametersMetadata" : {
+        "metadata" : { }
+      }
+    } ],
+    "propertiesMetadata" : {
+      "metadata" : { }
+    },
+    "parametersMetadata" : {
+      "metadata" : { }
+    },
+    "hooks" : [ ]
+  } ],
+  "resources" : [ ],
+  "parameters" : {
+    "authorization-url" : "********",
+    "org" : "SAP Presales Cloud (NEO/FOUNDRY)_sappsbr",
+    "deploy-target" : "SAP Presales Cloud (NEO/FOUNDRY)_sappsbr DEV",
+    "enable-parallel-deployments" : true,
+    "space" : "DEV",
+    "xs-api-url" : "https://api.cf.eu10.hana.ondemand.com",
+    "deploy-url" : "deploy-service.cfapps.eu10.hana.ondemand.com",
+    "xs-type" : "CF",
+    "default-domain" : "cfapps.eu10.hana.ondemand.com",
+    "xs-auth-url" : "********",
+    "user" : "********",
+    "controller-url" : "https://api.cf.eu10.hana.ondemand.com"
+  },
+  "parametersMetadata" : {
+    "metadata" : { }
+  }
+}#
+
+#2.0#2020 06 02 16:09:03.656#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.reprocessDescriptorTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-3###
+[XS2ProcessDescriptorStep] Merged descriptor properties and parameters resolved#
+
+#2.0#2020 06 02 16:09:03.658#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.reprocessDescriptorTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-3###
+Step "Re-Process Descriptor Step" finished#
+
+#2.0#2020 06 02 16:09:03.687#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.buildApplicationDeployModelTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-21###
+[XS2BuildApplicationDeployModelStep] Executing task "buildApplicationDeployModelTask" of process "60c1ba7b-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:09:03.689#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.buildApplicationDeployModelTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-21###
+[XS2BuildApplicationDeployModelStep] Building cloud deployment model for application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:09:03.695#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.buildApplicationDeployModelTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-21###
+[XS2BuildApplicationDeployModelStep] Configuration entries to publish: [ ]#
+
+#2.0#2020 06 02 16:09:03.695#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.buildApplicationDeployModelTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-21###
+[XS2BuildApplicationDeployModelStep] Cloud deployment model for application built#
+
+#2.0#2020 06 02 16:09:03.697#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.buildApplicationDeployModelTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-21###
+Step "Build Application Deploy Model" finished#
+
+#2.0#2020 06 02 16:09:03.731#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.createAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-2###
+[CreateOrUpdateAppStep] Executing task "createAppTask" of process "60c1ba7b-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:09:03.732#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.createAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-2###
+[CreateOrUpdateAppStep] Getting application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:09:04.252#Z#INFO#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.createAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-2###
+[CreateOrUpdateAppStep] Updating application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:09:04.256#Z#INFO#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.createAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-2###
+[CreateOrUpdateAppStep] Application "checkinapp-srv" attributes are not modified and will not be updated#
+
+#2.0#2020 06 02 16:09:04.264#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.createAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-2###
+[CreateOrUpdateAppStep] Binding parameters for application "checkinapp-srv": { }#
+
+#2.0#2020 06 02 16:09:04.264#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.createAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-2###
+[CreateOrUpdateAppStep] Getting application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:09:04.804#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.createAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-2###
+[CreateOrUpdateAppStep] Application "checkinapp-srv" updated#
+
+#2.0#2020 06 02 16:09:04.807#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.createAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-2###
+Step "Create App" finished#
+
+#2.0#2020 06 02 16:09:04.845#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.uploadAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-6###
+[UploadAppStep] Executing task "uploadAppTask" of process "60c1ba7b-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:09:04.847#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.uploadAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-6###
+[UploadAppStep] Upload app timeout in seconds: 3,600#
+
+#2.0#2020 06 02 16:09:04.847#Z#INFO#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.uploadAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-6###
+[UploadAppStep] Uploading application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:09:04.887#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.uploadAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-6###
+[UploadAppStep] Getting application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:09:07.202#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.uploadAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-6###
+[UploadAppStep] Getting builds for application "10e5109b-8c0a-4896-86f2-c890e615c878"...#
+
+#2.0#2020 06 02 16:09:07.478#Z#INFO#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.uploadAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-6###
+[UploadAppStep] Application "checkinapp-srv" was not staged correctly during the previous deployment#
+
+#2.0#2020 06 02 16:09:07.492#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.uploadAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-6###
+[UploadAppStep] Last build: {"metadata":{"guid":"7b2040b2-e20f-4a14-a0a2-3f6c896fd733","createdAt":1591110187000,"updatedAt":1591110206000},"state":"FAILED","createdBy":{"guid":"9675bc31-481b-4b5a-ab17-95cf70683710","name":"gustavo.calixto@sap.com"},"dropletInfo":{"guid":"36326fee-a7ac-4c92-9f1e-c9538df01c3c"},"packageInfo":{"guid":"152906db-6c2d-4602-99ba-96e5011c7001"},"error":"StagingError - Staging error: No process types returned from stager"}#
+
+#2.0#2020 06 02 16:09:07.492#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.uploadAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-6###
+[UploadAppStep] Uploading file "checkinapp-srv/data.zip" for application "checkinapp-srv"#
+
+#2.0#2020 06 02 16:09:07.508#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.uploadAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-6###
+[UploadAppStep] Asynchronously uploading binaries for application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:09:09.739#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.uploadAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-6###
+[UploadAppStep] Started async upload of application "checkinapp-srv"#
+
+#2.0#2020 06 02 16:09:09.741#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.uploadAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-6###
+Step "Upload App" finished#
+
+#2.0#2020 06 02 16:09:09.847#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.uploadAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########App upload monitor: 367aefe6-4a6d-4397-af65-c314258d0edc###
+[UploadAppStep] Upload status: PROCESSING_UPLOAD#
+
+#2.0#2020 06 02 16:09:14.945#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.uploadAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########App upload monitor: 367aefe6-4a6d-4397-af65-c314258d0edc###
+[UploadAppStep] Upload status: READY#
+
+#2.0#2020 06 02 16:09:22.943#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.uploadAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-5###
+[UploadAppStep] Executing task "uploadAppTask" of process "60c1ba7b-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:09:22.945#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.uploadAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-5###
+[UploadAppStep] Upload app timeout in seconds: 3,600#
+
+#2.0#2020 06 02 16:09:22.945#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.uploadAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-5###
+[UploadAppStep] Checking upload status of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:09:23.198#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.uploadAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-5###
+[UploadAppStep] Getting package "367aefe6-4a6d-4397-af65-c314258d0edc"...#
+
+#2.0#2020 06 02 16:09:24.300#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.uploadAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-5###
+[UploadAppStep] Application "checkinapp-srv" uploaded#
+
+#2.0#2020 06 02 16:09:24.304#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.uploadAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-5###
+Step "Upload App" finished#
+
+#2.0#2020 06 02 16:09:24.335#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.scaleAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-8###
+[ScaleAppStep] Executing task "scaleAppTask" of process "60c1ba7b-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:09:24.337#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.scaleAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-8###
+[ScaleAppStep] Scaling application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:09:24.337#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.scaleAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-8###
+[ScaleAppStep] Application "checkinapp-srv" scaled#
+
+#2.0#2020 06 02 16:09:24.339#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.scaleAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-8###
+Step "Scale App" finished#
+
+#2.0#2020 06 02 16:09:24.365#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.determineDesiredStateAchievingActionsTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-26###
+[DetermineDesiredStateAchievingActionsStep] Executing task "determineDesiredStateAchievingActionsTask" of process "60c1ba7b-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:09:24.366#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.determineDesiredStateAchievingActionsTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-26###
+[DetermineDesiredStateAchievingActionsStep] Getting application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:09:24.818#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.determineDesiredStateAchievingActionsTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-26###
+[DetermineDesiredStateAchievingActionsStep] Current state of application checkinapp-srv: STOPPED#
+
+#2.0#2020 06 02 16:09:24.818#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.determineDesiredStateAchievingActionsTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-26###
+[DetermineDesiredStateAchievingActionsStep] Desired state of application checkinapp-srv: STARTED#
+
+#2.0#2020 06 02 16:09:24.821#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.determineDesiredStateAchievingActionsTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-26###
+[DetermineDesiredStateAchievingActionsStep] Actions that should be executed on application checkinapp-srv: [START, STAGE]#
+
+#2.0#2020 06 02 16:09:24.823#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.determineDesiredStateAchievingActionsTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-26###
+Step "Determine Desired State Achieving Actions" finished#
+
+#2.0#2020 06 02 16:09:24.854#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-11###
+[StageAppStep] Executing task "stageAppTask" of process "60c1ba7b-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:09:24.856#Z#INFO#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-11###
+[StageAppStep] Staging application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:09:24.858#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-11###
+[StageAppStep] Creating build for package "367aefe6-4a6d-4397-af65-c314258d0edc"...#
+
+#2.0#2020 06 02 16:09:25.720#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-11###
+Step "Stage App" finished#
+
+#2.0#2020 06 02 16:09:32.912#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-2###
+[StageAppStep] Executing task "stageAppTask" of process "60c1ba7b-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:09:32.913#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-2###
+[StageAppStep] Checking status of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:09:32.913#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-2###
+[StageAppStep] Getting build "e63ec62e-0019-4a13-a21e-b9d01a25689d"...#
+
+#2.0#2020 06 02 16:09:33.050#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-2###
+[StageAppStep] Staging status of application "checkinapp-srv": PENDING#
+
+#2.0#2020 06 02 16:09:33.051#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-2###
+[StageAppStep] Getting recent logs of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:09:33.577#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-2###
+Step "Stage App" finished#
+
+#2.0#2020 06 02 16:09:42.928#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-18###
+[StageAppStep] Executing task "stageAppTask" of process "60c1ba7b-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:09:42.929#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-18###
+[StageAppStep] Checking status of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:09:42.929#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-18###
+[StageAppStep] Getting build "e63ec62e-0019-4a13-a21e-b9d01a25689d"...#
+
+#2.0#2020 06 02 16:09:43.043#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-18###
+[StageAppStep] Staging status of application "checkinapp-srv": PENDING#
+
+#2.0#2020 06 02 16:09:43.044#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-18###
+[StageAppStep] Getting recent logs of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:09:44.218#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-18###
+Step "Stage App" finished#
+
+#2.0#2020 06 02 16:09:52.955#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-3###
+[StageAppStep] Executing task "stageAppTask" of process "60c1ba7b-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:09:52.956#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-3###
+[StageAppStep] Checking status of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:09:52.956#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-3###
+[StageAppStep] Getting build "e63ec62e-0019-4a13-a21e-b9d01a25689d"...#
+
+#2.0#2020 06 02 16:09:53.055#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-3###
+[StageAppStep] Staging status of application "checkinapp-srv": FAILED#
+
+#2.0#2020 06 02 16:09:53.056#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-3###
+[StageAppStep] Getting recent logs of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:09:55.559#Z#ERROR#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-3###
+[StageAppStep] Error staging application "checkinapp-srv": StagingError - Staging error: No process types returned from stager
+Download the application logs via the dmol command and check them for more information.#
+
+#2.0#2020 06 02 16:09:55.563#Z#ERROR#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-3###
+Exception caught#
+
+com.sap.cloud.lm.sl.common.SLException: A step of the process has failed. Retrying it may solve the issue.
+	at com.sap.cloud.lm.sl.cf.process.steps.SyncFlowableStep.executeInternal(SyncFlowableStep.java:71)
+	at com.sap.cloud.lm.sl.cf.process.steps.SyncFlowableStep.lambda$execute$0(SyncFlowableStep.java:60)
+	at com.sap.cloud.lm.sl.cf.core.util.LoggingUtil.logWithCorrelationId(LoggingUtil.java:15)
+	at com.sap.cloud.lm.sl.cf.process.steps.SyncFlowableStep.execute(SyncFlowableStep.java:60)
+	at org.flowable.engine.impl.delegate.invocation.JavaDelegateInvocation.invoke(JavaDelegateInvocation.java:35)
+	at org.flowable.engine.impl.delegate.invocation.DelegateInvocation.proceed(DelegateInvocation.java:35)
+	at org.flowable.engine.impl.delegate.invocation.DefaultDelegateInterceptor.handleInvocation(DefaultDelegateInterceptor.java:26)
+	at org.flowable.engine.impl.bpmn.behavior.ServiceTaskDelegateExpressionActivityBehavior.execute(ServiceTaskDelegateExpressionActivityBehavior.java:111)
+	at org.flowable.engine.impl.agenda.ContinueProcessOperation.executeActivityBehavior(ContinueProcessOperation.java:275)
+	at org.flowable.engine.impl.agenda.ContinueProcessOperation.executeSynchronous(ContinueProcessOperation.java:159)
+	at org.flowable.engine.impl.agenda.ContinueProcessOperation.continueThroughFlowNode(ContinueProcessOperation.java:114)
+	at org.flowable.engine.impl.agenda.ContinueProcessOperation.run(ContinueProcessOperation.java:78)
+	at org.flowable.engine.impl.interceptor.CommandInvoker.executeOperation(CommandInvoker.java:88)
+	at org.flowable.engine.impl.interceptor.CommandInvoker.executeOperations(CommandInvoker.java:72)
+	at org.flowable.engine.impl.interceptor.CommandInvoker.execute(CommandInvoker.java:56)
+	at org.flowable.engine.impl.interceptor.BpmnOverrideContextInterceptor.execute(BpmnOverrideContextInterceptor.java:25)
+	at org.flowable.common.engine.impl.interceptor.TransactionContextInterceptor.execute(TransactionContextInterceptor.java:53)
+	at org.flowable.common.engine.impl.interceptor.CommandContextInterceptor.execute(CommandContextInterceptor.java:72)
+	at org.flowable.common.spring.SpringTransactionInterceptor.lambda$execute$0(SpringTransactionInterceptor.java:56)
+	at org.springframework.transaction.support.TransactionTemplate.execute(TransactionTemplate.java:140)
+	at org.flowable.common.spring.SpringTransactionInterceptor.execute(SpringTransactionInterceptor.java:56)
+	at org.flowable.common.engine.impl.interceptor.LogInterceptor.execute(LogInterceptor.java:30)
+	at org.flowable.common.engine.impl.cfg.CommandExecutorImpl.execute(CommandExecutorImpl.java:56)
+	at org.flowable.common.engine.impl.cfg.CommandExecutorImpl.execute(CommandExecutorImpl.java:51)
+	at org.flowable.job.service.impl.asyncexecutor.ExecuteAsyncRunnable.executeJob(ExecuteAsyncRunnable.java:128)
+	at org.flowable.job.service.impl.asyncexecutor.ExecuteAsyncRunnable.run(ExecuteAsyncRunnable.java:116)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:836)
+#2.0#2020 06 02 16:09:55.567#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-3###
+Step "Stage App" finished#
+
+#2.0#2020 06 02 16:09:57.955#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-27###
+[StageAppStep] Executing task "stageAppTask" of process "60c1ba7b-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:09:57.957#Z#INFO#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-27###
+[StageAppStep] Staging application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:09:57.961#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-27###
+[StageAppStep] Creating build for package "367aefe6-4a6d-4397-af65-c314258d0edc"...#
+
+#2.0#2020 06 02 16:09:58.816#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-27###
+Step "Stage App" finished#
+
+#2.0#2020 06 02 16:10:12.984#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-32###
+[StageAppStep] Executing task "stageAppTask" of process "60c1ba7b-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:10:13.207#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-32###
+[StageAppStep] Checking status of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:10:13.207#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-32###
+[StageAppStep] Getting build "4ce1dbda-dbfa-45cb-94b4-0412d86a12b2"...#
+
+#2.0#2020 06 02 16:10:14.057#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-32###
+[StageAppStep] Staging status of application "checkinapp-srv": PENDING#
+
+#2.0#2020 06 02 16:10:14.058#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-32###
+[StageAppStep] Getting recent logs of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:10:14.704#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-32###
+Step "Stage App" finished#
+
+#2.0#2020 06 02 16:10:23.027#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-9###
+[StageAppStep] Executing task "stageAppTask" of process "60c1ba7b-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:10:23.028#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-9###
+[StageAppStep] Checking status of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:10:23.028#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-9###
+[StageAppStep] Getting build "4ce1dbda-dbfa-45cb-94b4-0412d86a12b2"...#
+
+#2.0#2020 06 02 16:10:23.146#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-9###
+[StageAppStep] Staging status of application "checkinapp-srv": PENDING#
+
+#2.0#2020 06 02 16:10:23.147#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-9###
+[StageAppStep] Getting recent logs of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:10:24.165#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-9###
+Step "Stage App" finished#
+
+#2.0#2020 06 02 16:10:33.046#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-12###
+[StageAppStep] Executing task "stageAppTask" of process "60c1ba7b-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:10:33.047#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-12###
+[StageAppStep] Checking status of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:10:33.047#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-12###
+[StageAppStep] Getting build "4ce1dbda-dbfa-45cb-94b4-0412d86a12b2"...#
+
+#2.0#2020 06 02 16:10:33.151#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-12###
+[StageAppStep] Staging status of application "checkinapp-srv": PENDING#
+
+#2.0#2020 06 02 16:10:33.153#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-12###
+[StageAppStep] Getting recent logs of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:10:33.662#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-12###
+Step "Stage App" finished#
+
+#2.0#2020 06 02 16:10:43.074#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-3###
+[StageAppStep] Executing task "stageAppTask" of process "60c1ba7b-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:10:43.075#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-3###
+[StageAppStep] Checking status of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:10:43.075#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-3###
+[StageAppStep] Getting build "4ce1dbda-dbfa-45cb-94b4-0412d86a12b2"...#
+
+#2.0#2020 06 02 16:10:43.179#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-3###
+[StageAppStep] Staging status of application "checkinapp-srv": PENDING#
+
+#2.0#2020 06 02 16:10:43.180#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-3###
+[StageAppStep] Getting recent logs of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:10:43.714#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-3###
+Step "Stage App" finished#
+
+#2.0#2020 06 02 16:10:53.103#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-11###
+[StageAppStep] Executing task "stageAppTask" of process "60c1ba7b-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:10:53.104#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-11###
+[StageAppStep] Checking status of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:10:53.105#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-11###
+[StageAppStep] Getting build "4ce1dbda-dbfa-45cb-94b4-0412d86a12b2"...#
+
+#2.0#2020 06 02 16:10:53.212#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-11###
+[StageAppStep] Staging status of application "checkinapp-srv": FAILED#
+
+#2.0#2020 06 02 16:10:53.213#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-11###
+[StageAppStep] Getting recent logs of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:10:53.787#Z#ERROR#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-11###
+[StageAppStep] Error staging application "checkinapp-srv": StagingError - Staging error: No process types returned from stager
+Download the application logs via the dmol command and check them for more information.#
+
+#2.0#2020 06 02 16:10:53.792#Z#ERROR#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-11###
+Exception caught#
+
+com.sap.cloud.lm.sl.common.SLException: A step of the process has failed. Retrying it may solve the issue.
+	at com.sap.cloud.lm.sl.cf.process.steps.SyncFlowableStep.executeInternal(SyncFlowableStep.java:71)
+	at com.sap.cloud.lm.sl.cf.process.steps.SyncFlowableStep.lambda$execute$0(SyncFlowableStep.java:60)
+	at com.sap.cloud.lm.sl.cf.core.util.LoggingUtil.logWithCorrelationId(LoggingUtil.java:15)
+	at com.sap.cloud.lm.sl.cf.process.steps.SyncFlowableStep.execute(SyncFlowableStep.java:60)
+	at org.flowable.engine.impl.delegate.invocation.JavaDelegateInvocation.invoke(JavaDelegateInvocation.java:35)
+	at org.flowable.engine.impl.delegate.invocation.DelegateInvocation.proceed(DelegateInvocation.java:35)
+	at org.flowable.engine.impl.delegate.invocation.DefaultDelegateInterceptor.handleInvocation(DefaultDelegateInterceptor.java:26)
+	at org.flowable.engine.impl.bpmn.behavior.ServiceTaskDelegateExpressionActivityBehavior.execute(ServiceTaskDelegateExpressionActivityBehavior.java:111)
+	at org.flowable.engine.impl.agenda.ContinueProcessOperation.executeActivityBehavior(ContinueProcessOperation.java:275)
+	at org.flowable.engine.impl.agenda.ContinueProcessOperation.executeSynchronous(ContinueProcessOperation.java:159)
+	at org.flowable.engine.impl.agenda.ContinueProcessOperation.continueThroughFlowNode(ContinueProcessOperation.java:114)
+	at org.flowable.engine.impl.agenda.ContinueProcessOperation.run(ContinueProcessOperation.java:78)
+	at org.flowable.engine.impl.interceptor.CommandInvoker.executeOperation(CommandInvoker.java:88)
+	at org.flowable.engine.impl.interceptor.CommandInvoker.executeOperations(CommandInvoker.java:72)
+	at org.flowable.engine.impl.interceptor.CommandInvoker.execute(CommandInvoker.java:56)
+	at org.flowable.engine.impl.interceptor.BpmnOverrideContextInterceptor.execute(BpmnOverrideContextInterceptor.java:25)
+	at org.flowable.common.engine.impl.interceptor.TransactionContextInterceptor.execute(TransactionContextInterceptor.java:53)
+	at org.flowable.common.engine.impl.interceptor.CommandContextInterceptor.execute(CommandContextInterceptor.java:72)
+	at org.flowable.common.spring.SpringTransactionInterceptor.lambda$execute$0(SpringTransactionInterceptor.java:56)
+	at org.springframework.transaction.support.TransactionTemplate.execute(TransactionTemplate.java:140)
+	at org.flowable.common.spring.SpringTransactionInterceptor.execute(SpringTransactionInterceptor.java:56)
+	at org.flowable.common.engine.impl.interceptor.LogInterceptor.execute(LogInterceptor.java:30)
+	at org.flowable.common.engine.impl.cfg.CommandExecutorImpl.execute(CommandExecutorImpl.java:56)
+	at org.flowable.common.engine.impl.cfg.CommandExecutorImpl.execute(CommandExecutorImpl.java:51)
+	at org.flowable.job.service.impl.asyncexecutor.ExecuteAsyncRunnable.executeJob(ExecuteAsyncRunnable.java:128)
+	at org.flowable.job.service.impl.asyncexecutor.ExecuteAsyncRunnable.run(ExecuteAsyncRunnable.java:116)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:836)
+#2.0#2020 06 02 16:10:53.798#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-11###
+Step "Stage App" finished#
+
+#2.0#2020 06 02 16:10:56.658#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-32###
+[StageAppStep] Executing task "stageAppTask" of process "60c1ba7b-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:10:56.660#Z#INFO#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-32###
+[StageAppStep] Staging application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:10:56.664#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-32###
+[StageAppStep] Creating build for package "367aefe6-4a6d-4397-af65-c314258d0edc"...#
+
+#2.0#2020 06 02 16:11:18.391#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-32###
+Step "Stage App" finished#
+
+#2.0#2020 06 02 16:11:33.186#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-30###
+[StageAppStep] Executing task "stageAppTask" of process "60c1ba7b-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:11:33.187#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-30###
+[StageAppStep] Checking status of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:11:33.187#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-30###
+[StageAppStep] Getting build "609eda87-1b43-41c2-b3d8-2e446fc6c189"...#
+
+#2.0#2020 06 02 16:11:33.292#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-30###
+[StageAppStep] Staging status of application "checkinapp-srv": PENDING#
+
+#2.0#2020 06 02 16:11:33.294#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-30###
+[StageAppStep] Getting recent logs of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:11:34.823#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-30###
+Step "Stage App" finished#
+
+#2.0#2020 06 02 16:11:43.213#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-2###
+[StageAppStep] Executing task "stageAppTask" of process "60c1ba7b-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:11:43.214#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-2###
+[StageAppStep] Checking status of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:11:43.214#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-2###
+[StageAppStep] Getting build "609eda87-1b43-41c2-b3d8-2e446fc6c189"...#
+
+#2.0#2020 06 02 16:11:43.326#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-2###
+[StageAppStep] Staging status of application "checkinapp-srv": PENDING#
+
+#2.0#2020 06 02 16:11:43.327#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-2###
+[StageAppStep] Getting recent logs of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:11:43.982#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-2###
+Step "Stage App" finished#
+
+#2.0#2020 06 02 16:11:53.228#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-10###
+[StageAppStep] Executing task "stageAppTask" of process "60c1ba7b-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:11:53.458#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-10###
+[StageAppStep] Checking status of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:11:53.458#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-10###
+[StageAppStep] Getting build "609eda87-1b43-41c2-b3d8-2e446fc6c189"...#
+
+#2.0#2020 06 02 16:11:53.578#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-10###
+[StageAppStep] Staging status of application "checkinapp-srv": PENDING#
+
+#2.0#2020 06 02 16:11:53.579#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-10###
+[StageAppStep] Getting recent logs of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:11:54.910#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-10###
+Step "Stage App" finished#
+
+#2.0#2020 06 02 16:12:03.262#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-13###
+[StageAppStep] Executing task "stageAppTask" of process "60c1ba7b-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:12:03.263#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-13###
+[StageAppStep] Checking status of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:12:03.264#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-13###
+[StageAppStep] Getting build "609eda87-1b43-41c2-b3d8-2e446fc6c189"...#
+
+#2.0#2020 06 02 16:12:03.384#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-13###
+[StageAppStep] Staging status of application "checkinapp-srv": PENDING#
+
+#2.0#2020 06 02 16:12:03.385#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-13###
+[StageAppStep] Getting recent logs of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:12:04.763#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-13###
+Step "Stage App" finished#
+
+#2.0#2020 06 02 16:12:13.302#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-15###
+[StageAppStep] Executing task "stageAppTask" of process "60c1ba7b-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:12:13.642#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-15###
+[StageAppStep] Checking status of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:12:13.643#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-15###
+[StageAppStep] Getting build "609eda87-1b43-41c2-b3d8-2e446fc6c189"...#
+
+#2.0#2020 06 02 16:12:13.739#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-15###
+[StageAppStep] Staging status of application "checkinapp-srv": PENDING#
+
+#2.0#2020 06 02 16:12:13.740#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-15###
+[StageAppStep] Getting recent logs of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:12:14.369#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-15###
+Step "Stage App" finished#
+
+#2.0#2020 06 02 16:12:23.355#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-23###
+[StageAppStep] Executing task "stageAppTask" of process "60c1ba7b-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:12:23.356#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-23###
+[StageAppStep] Checking status of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:12:23.356#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-23###
+[StageAppStep] Getting build "609eda87-1b43-41c2-b3d8-2e446fc6c189"...#
+
+#2.0#2020 06 02 16:12:23.440#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-23###
+[StageAppStep] Staging status of application "checkinapp-srv": FAILED#
+
+#2.0#2020 06 02 16:12:23.443#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-23###
+[StageAppStep] Getting recent logs of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:12:24.059#Z#ERROR#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-23###
+[StageAppStep] Error staging application "checkinapp-srv": StagingError - Staging error: No process types returned from stager
+Download the application logs via the dmol command and check them for more information.#
+
+#2.0#2020 06 02 16:12:24.063#Z#ERROR#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-23###
+Exception caught#
+
+com.sap.cloud.lm.sl.common.SLException: A step of the process has failed. Retrying it may solve the issue.
+	at com.sap.cloud.lm.sl.cf.process.steps.SyncFlowableStep.executeInternal(SyncFlowableStep.java:71)
+	at com.sap.cloud.lm.sl.cf.process.steps.SyncFlowableStep.lambda$execute$0(SyncFlowableStep.java:60)
+	at com.sap.cloud.lm.sl.cf.core.util.LoggingUtil.logWithCorrelationId(LoggingUtil.java:15)
+	at com.sap.cloud.lm.sl.cf.process.steps.SyncFlowableStep.execute(SyncFlowableStep.java:60)
+	at org.flowable.engine.impl.delegate.invocation.JavaDelegateInvocation.invoke(JavaDelegateInvocation.java:35)
+	at org.flowable.engine.impl.delegate.invocation.DelegateInvocation.proceed(DelegateInvocation.java:35)
+	at org.flowable.engine.impl.delegate.invocation.DefaultDelegateInterceptor.handleInvocation(DefaultDelegateInterceptor.java:26)
+	at org.flowable.engine.impl.bpmn.behavior.ServiceTaskDelegateExpressionActivityBehavior.execute(ServiceTaskDelegateExpressionActivityBehavior.java:111)
+	at org.flowable.engine.impl.agenda.ContinueProcessOperation.executeActivityBehavior(ContinueProcessOperation.java:275)
+	at org.flowable.engine.impl.agenda.ContinueProcessOperation.executeSynchronous(ContinueProcessOperation.java:159)
+	at org.flowable.engine.impl.agenda.ContinueProcessOperation.continueThroughFlowNode(ContinueProcessOperation.java:114)
+	at org.flowable.engine.impl.agenda.ContinueProcessOperation.run(ContinueProcessOperation.java:78)
+	at org.flowable.engine.impl.interceptor.CommandInvoker.executeOperation(CommandInvoker.java:88)
+	at org.flowable.engine.impl.interceptor.CommandInvoker.executeOperations(CommandInvoker.java:72)
+	at org.flowable.engine.impl.interceptor.CommandInvoker.execute(CommandInvoker.java:56)
+	at org.flowable.engine.impl.interceptor.BpmnOverrideContextInterceptor.execute(BpmnOverrideContextInterceptor.java:25)
+	at org.flowable.common.engine.impl.interceptor.TransactionContextInterceptor.execute(TransactionContextInterceptor.java:53)
+	at org.flowable.common.engine.impl.interceptor.CommandContextInterceptor.execute(CommandContextInterceptor.java:72)
+	at org.flowable.common.spring.SpringTransactionInterceptor.lambda$execute$0(SpringTransactionInterceptor.java:56)
+	at org.springframework.transaction.support.TransactionTemplate.execute(TransactionTemplate.java:140)
+	at org.flowable.common.spring.SpringTransactionInterceptor.execute(SpringTransactionInterceptor.java:56)
+	at org.flowable.common.engine.impl.interceptor.LogInterceptor.execute(LogInterceptor.java:30)
+	at org.flowable.common.engine.impl.cfg.CommandExecutorImpl.execute(CommandExecutorImpl.java:56)
+	at org.flowable.common.engine.impl.cfg.CommandExecutorImpl.execute(CommandExecutorImpl.java:51)
+	at org.flowable.job.service.impl.asyncexecutor.ExecuteAsyncRunnable.executeJob(ExecuteAsyncRunnable.java:128)
+	at org.flowable.job.service.impl.asyncexecutor.ExecuteAsyncRunnable.run(ExecuteAsyncRunnable.java:116)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:836)
+#2.0#2020 06 02 16:12:24.069#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-23###
+Step "Stage App" finished#
+
+#2.0#2020 06 02 16:12:25.917#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-2###
+[StageAppStep] Executing task "stageAppTask" of process "60c1ba7b-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:12:25.920#Z#INFO#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-2###
+[StageAppStep] Staging application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:12:25.924#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-2###
+[StageAppStep] Creating build for package "367aefe6-4a6d-4397-af65-c314258d0edc"...#
+
+#2.0#2020 06 02 16:12:26.818#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-2###
+Step "Stage App" finished#
+
+#2.0#2020 06 02 16:12:33.384#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-4###
+[StageAppStep] Executing task "stageAppTask" of process "60c1ba7b-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:12:33.614#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-4###
+[StageAppStep] Checking status of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:12:33.614#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-4###
+[StageAppStep] Getting build "99e30b1d-636c-4403-8311-8e6f5e961137"...#
+
+#2.0#2020 06 02 16:12:33.753#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-4###
+[StageAppStep] Staging status of application "checkinapp-srv": PENDING#
+
+#2.0#2020 06 02 16:12:33.754#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-4###
+[StageAppStep] Getting recent logs of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:12:35.816#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-4###
+Step "Stage App" finished#
+
+#2.0#2020 06 02 16:12:43.404#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-14###
+[StageAppStep] Executing task "stageAppTask" of process "60c1ba7b-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:12:43.405#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-14###
+[StageAppStep] Checking status of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:12:43.406#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-14###
+[StageAppStep] Getting build "99e30b1d-636c-4403-8311-8e6f5e961137"...#
+
+#2.0#2020 06 02 16:12:43.542#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-14###
+[StageAppStep] Staging status of application "checkinapp-srv": PENDING#
+
+#2.0#2020 06 02 16:12:43.544#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-14###
+[StageAppStep] Getting recent logs of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:12:44.152#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-14###
+Step "Stage App" finished#
+
+#2.0#2020 06 02 16:12:53.432#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-2###
+[StageAppStep] Executing task "stageAppTask" of process "60c1ba7b-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:12:53.433#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-2###
+[StageAppStep] Checking status of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:12:53.433#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-2###
+[StageAppStep] Getting build "99e30b1d-636c-4403-8311-8e6f5e961137"...#
+
+#2.0#2020 06 02 16:12:53.557#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-2###
+[StageAppStep] Staging status of application "checkinapp-srv": PENDING#
+
+#2.0#2020 06 02 16:12:53.558#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-2###
+[StageAppStep] Getting recent logs of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:12:54.096#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-2###
+Step "Stage App" finished#
+
+#2.0#2020 06 02 16:13:03.436#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-7###
+[StageAppStep] Executing task "stageAppTask" of process "60c1ba7b-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:13:03.438#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-7###
+[StageAppStep] Checking status of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:13:03.438#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-7###
+[StageAppStep] Getting build "99e30b1d-636c-4403-8311-8e6f5e961137"...#
+
+#2.0#2020 06 02 16:13:05.177#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-7###
+[StageAppStep] Staging status of application "checkinapp-srv": PENDING#
+
+#2.0#2020 06 02 16:13:05.179#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-7###
+[StageAppStep] Getting recent logs of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:13:05.788#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-7###
+Step "Stage App" finished#
+
+#2.0#2020 06 02 16:13:13.455#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-32###
+[StageAppStep] Executing task "stageAppTask" of process "60c1ba7b-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:13:13.456#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-32###
+[StageAppStep] Checking status of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:13:13.456#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-32###
+[StageAppStep] Getting build "99e30b1d-636c-4403-8311-8e6f5e961137"...#
+
+#2.0#2020 06 02 16:13:13.565#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-32###
+[StageAppStep] Staging status of application "checkinapp-srv": PENDING#
+
+#2.0#2020 06 02 16:13:13.566#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-32###
+[StageAppStep] Getting recent logs of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:13:16.590#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-32###
+Step "Stage App" finished#
+
+#2.0#2020 06 02 16:13:23.477#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-14###
+[StageAppStep] Executing task "stageAppTask" of process "60c1ba7b-a4eb-11ea-8413-eeee0a97803d"...#
+
+#2.0#2020 06 02 16:13:23.478#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-14###
+[StageAppStep] Checking status of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:13:23.478#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-14###
+[StageAppStep] Getting build "99e30b1d-636c-4403-8311-8e6f5e961137"...#
+
+#2.0#2020 06 02 16:13:23.724#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-14###
+[StageAppStep] Staging status of application "checkinapp-srv": FAILED#
+
+#2.0#2020 06 02 16:13:23.725#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-14###
+[StageAppStep] Getting recent logs of application "checkinapp-srv"...#
+
+#2.0#2020 06 02 16:13:24.895#Z#ERROR#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-14###
+[StageAppStep] Error staging application "checkinapp-srv": StagingError - Staging error: No process types returned from stager
+Download the application logs via the dmol command and check them for more information.#
+
+#2.0#2020 06 02 16:13:24.898#Z#ERROR#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-14###
+Exception caught#
+
+com.sap.cloud.lm.sl.common.SLException: A step of the process has failed. Retrying it may solve the issue.
+	at com.sap.cloud.lm.sl.cf.process.steps.SyncFlowableStep.executeInternal(SyncFlowableStep.java:71)
+	at com.sap.cloud.lm.sl.cf.process.steps.SyncFlowableStep.lambda$execute$0(SyncFlowableStep.java:60)
+	at com.sap.cloud.lm.sl.cf.core.util.LoggingUtil.logWithCorrelationId(LoggingUtil.java:15)
+	at com.sap.cloud.lm.sl.cf.process.steps.SyncFlowableStep.execute(SyncFlowableStep.java:60)
+	at org.flowable.engine.impl.delegate.invocation.JavaDelegateInvocation.invoke(JavaDelegateInvocation.java:35)
+	at org.flowable.engine.impl.delegate.invocation.DelegateInvocation.proceed(DelegateInvocation.java:35)
+	at org.flowable.engine.impl.delegate.invocation.DefaultDelegateInterceptor.handleInvocation(DefaultDelegateInterceptor.java:26)
+	at org.flowable.engine.impl.bpmn.behavior.ServiceTaskDelegateExpressionActivityBehavior.execute(ServiceTaskDelegateExpressionActivityBehavior.java:111)
+	at org.flowable.engine.impl.agenda.ContinueProcessOperation.executeActivityBehavior(ContinueProcessOperation.java:275)
+	at org.flowable.engine.impl.agenda.ContinueProcessOperation.executeSynchronous(ContinueProcessOperation.java:159)
+	at org.flowable.engine.impl.agenda.ContinueProcessOperation.continueThroughFlowNode(ContinueProcessOperation.java:114)
+	at org.flowable.engine.impl.agenda.ContinueProcessOperation.run(ContinueProcessOperation.java:78)
+	at org.flowable.engine.impl.interceptor.CommandInvoker.executeOperation(CommandInvoker.java:88)
+	at org.flowable.engine.impl.interceptor.CommandInvoker.executeOperations(CommandInvoker.java:72)
+	at org.flowable.engine.impl.interceptor.CommandInvoker.execute(CommandInvoker.java:56)
+	at org.flowable.engine.impl.interceptor.BpmnOverrideContextInterceptor.execute(BpmnOverrideContextInterceptor.java:25)
+	at org.flowable.common.engine.impl.interceptor.TransactionContextInterceptor.execute(TransactionContextInterceptor.java:53)
+	at org.flowable.common.engine.impl.interceptor.CommandContextInterceptor.execute(CommandContextInterceptor.java:72)
+	at org.flowable.common.spring.SpringTransactionInterceptor.lambda$execute$0(SpringTransactionInterceptor.java:56)
+	at org.springframework.transaction.support.TransactionTemplate.execute(TransactionTemplate.java:140)
+	at org.flowable.common.spring.SpringTransactionInterceptor.execute(SpringTransactionInterceptor.java:56)
+	at org.flowable.common.engine.impl.interceptor.LogInterceptor.execute(LogInterceptor.java:30)
+	at org.flowable.common.engine.impl.cfg.CommandExecutorImpl.execute(CommandExecutorImpl.java:56)
+	at org.flowable.common.engine.impl.cfg.CommandExecutorImpl.execute(CommandExecutorImpl.java:51)
+	at org.flowable.job.service.impl.asyncexecutor.ExecuteAsyncRunnable.executeJob(ExecuteAsyncRunnable.java:128)
+	at org.flowable.job.service.impl.asyncexecutor.ExecuteAsyncRunnable.run(ExecuteAsyncRunnable.java:116)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:836)
+#2.0#2020 06 02 16:13:24.903#Z#DEBUG#com.sap.cloud.lm.sl.xs2.5fce80b1-a4eb-11ea-8413-eeee0a97803d.OPERATION.stageAppTask#
+######com.sap.cloud.lm.sl.cf.persistence.services.ProcessLogger########flowable-async-job-executor-thread-14###
+Step "Stage App" finished#
+
