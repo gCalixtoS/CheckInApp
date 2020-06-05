@@ -1,11 +1,10 @@
 import React from 'react'
 import logo from './assets/SAP_scrn_R.png'
 
-import {GraphData} from './components/Graph/GraphData'
 import "@ui5/webcomponents-fiori/dist/ShellBar"
 import Tabs from './components/Tabs/Tabs'
 
-import axios from 'axios'
+
 import { withAuth } from './msal/MsalAuthProvider'
 
 class RootApp extends React.Component {
