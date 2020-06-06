@@ -7,15 +7,17 @@ import "@ui5/webcomponents/dist/Option"
 import "@ui5/webcomponents/dist/DatePicker"
 import "@ui5/webcomponents/dist/Label"
 import "@ui5/webcomponents/dist/Title"
-import "@ui5/webcomponents/dist/MessageStrip";
+import "@ui5/webcomponents-icons/dist/icons/cancel"
+import "@ui5/webcomponents/dist/Toast"
 
-import { Grid } from '@ui5/webcomponents-react/lib/Grid';
 
-import "@ui5/webcomponents/dist/Table";
-import "@ui5/webcomponents/dist/TableColumn";
-import "@ui5/webcomponents/dist/TableRow";
-import "@ui5/webcomponents/dist/TableCell";
-import "@ui5/webcomponents/dist/Switch";
+import { Grid } from '@ui5/webcomponents-react/lib/Grid'
+
+import "@ui5/webcomponents/dist/Table"
+import "@ui5/webcomponents/dist/TableColumn"
+import "@ui5/webcomponents/dist/TableRow"
+import "@ui5/webcomponents/dist/TableCell"
+import "@ui5/webcomponents/dist/Switch"
 
 import axios from 'axios'
 
@@ -25,7 +27,7 @@ import { getUserDetails } from '../../graph/GraphService'
 import './CheckIn.css'
 
 function CheckIn() {
-    const url = 'http://localhost:4004/catalog/'
+    const url = process.env.REACT_APP_CHECKINAPI
 
     const refOffice = useRef()
     const refFloor = useRef()
@@ -39,25 +41,24 @@ function CheckIn() {
     const [floor, setFloor] = useState()
     const [date, setDate] = useState()
     const [user, setUser] = useState()
-    const [inserted, setInserted] = useState(false)
-    const [insertedError, setInsertedError] = useState(false)
     const [availability, setAvailability] = useState()
+    const [toastMsg,setToastMsg] = useState()
 
     var getUser = async () => {
         try {
             const accessTokenRequest = {
                 scopes: ["user.read"]
             }
-            var accessToken = null;
+            var accessToken = null
             try {
-                accessToken = await msalAuth.acquireTokenSilent(accessTokenRequest);
+                accessToken = await msalAuth.acquireTokenSilent(accessTokenRequest)
             }
             catch (error) {
-                accessToken = await msalAuth.acquireTokenPopup(accessTokenRequest);
+                accessToken = await msalAuth.acquireTokenPopup(accessTokenRequest)
             }
 
             if (accessToken) {
-                var user = await getUserDetails(accessToken);
+                var user = await getUserDetails(accessToken)
                 setUser({
                     user:user,
                     isLoading: false,
@@ -74,17 +75,17 @@ function CheckIn() {
             }
         }
         catch (err) {
-            var error = {};
+            var error = {}
             if (typeof (err) === 'string') {
-                var errParts = err.split('|');
+                var errParts = err.split('|')
                 error = errParts.length > 1 ?
                     { message: errParts[1], debug: errParts[0] } :
-                    { message: err };
+                    { message: err }
             } else {
                 error = {
                     message: err.message,
                     debug: JSON.stringify(err)
-                };
+                }
             }
             setUser({
                 user:{},
@@ -148,11 +149,19 @@ function CheckIn() {
             date : Moment(date).format('YYYY-DD-MM'),
             active : 1
         }).then(resp => {
-            setInserted(true)
             getCheckIns(user.user.id)
             getAvailability(Moment(date).format('YYYY-MM-DD'), +floor)
-        }).catch(error => {
-            setInsertedError(true)
+
+            setToastMsg('Check-in Realizado!')
+            document.getElementById('wcToastBasic').show()
+        }).catch((error) => {
+            if (error.response.data.error.code === "400"){
+                setToastMsg(error.response.data.error.message)
+            }else{
+                setToastMsg('Erro ao inserir o check-in, Tente novamente em alguns instantes.')
+            }
+            
+            document.getElementById('wcToastBasic').show()
         })
     }
 
@@ -161,6 +170,19 @@ function CheckIn() {
         d.setDate(d.getDate() + 5)
         return d.toLocaleDateString('PT')
     }
+
+    var cancel = (checkInId) => {
+        axios.delete(`${url}CheckIn/${checkInId}`)
+            .then((resp) => {
+                getCheckIns(user.user.id)
+                if (date != undefined) {
+                    getAvailability(Moment(date).format('YYYY-MM-DD'), +floor)
+                }
+
+                setToastMsg('Check-in Cancelado')
+                document.getElementById('wcToastBasic').show()
+            })
+    }   
 
     //on floor change
     useEffect(() =>{
@@ -211,16 +233,10 @@ function CheckIn() {
     useEffect(() => {
         
         window.onload = () => {
-            document.querySelectorAll("ui5-messagestrip").forEach(function(messageStrip) {
-                messageStrip.addEventListener("close", function() {
-                    messageStrip.parentNode.removeChild(messageStrip);
-                });
-            });
-
             getUser()
             getOffices()
         }
-    });
+    })
 
     useEffect(() => {
         if (user){
@@ -232,11 +248,11 @@ function CheckIn() {
             <Grid className="CheckIn">
                 <div>
                     <ui5-label style={{ width: '100%' }} className="Labels" id="lblEscritorio" for="escritorio" required>Escritório: </ui5-label>
-                    <ui5-select value={office} ref={refOffice} class="select" id="escritorio" aria-required="true" aria-labelledby="myLabel3">
+                    <ui5-select style={{ width: '100%' }} value={office} ref={refOffice} class="select" id="escritorio" aria-required="true" aria-labelledby="myLabel3">
                         {
                             offices.map((optOffice) => {
                                 return (
-                                    <ui5-option id={optOffice.ID} value={optOffice.ID}>{optOffice.name}</ui5-option>
+                                    <ui5-option key={optOffice.ID} value={optOffice.ID}>{optOffice.name}</ui5-option>
                                 )
                             })
                         }
@@ -244,16 +260,16 @@ function CheckIn() {
                 </div>
                 <div>
                     <ui5-label style={{ width: '100%' }} className="Labels" id="lblLocalidade" for="localidade" required>Localidade: </ui5-label>
-                    <ui5-select ref={refFloor} value={floor} class="select" id="localidade">
+                    <ui5-select style={{ width: '100%' }} ref={refFloor} value={floor} class="select" id="localidade">
                         {
                             floors.map(optFloors => {
                                 if (optFloors.ID === floor){
                                     return (
-                                        <ui5-option value={optFloors.ID} selected>{optFloors.name}</ui5-option>
+                                        <ui5-option key={optFloors.ID} value={optFloors.ID} selected>{optFloors.name}</ui5-option>
                                     )
                                 }else{
                                     return (
-                                        <ui5-option value={optFloors.ID}>{optFloors.name}</ui5-option>
+                                        <ui5-option key={optFloors.ID} value={optFloors.ID}>{optFloors.name}</ui5-option>
                                     )
                                 }
                             })
@@ -262,17 +278,15 @@ function CheckIn() {
                 </div>
                 <div>
                     <ui5-label style={{ width: '100%' }} className="Labels" id="lblData" for="data" required>Data: </ui5-label>
-                    <ui5-datepicker ref={refDate} value={date} id="data" min-date={new Date().toLocaleDateString('PT')} max-date={getMaxDate()} format-pattern="dd/MM/yyyy"></ui5-datepicker>
+                    <ui5-datepicker style={{ width: '100%' }} ref={refDate} value={date} id="data" min-date={new Date().toLocaleDateString('PT')} max-date={getMaxDate()} format-pattern="dd/MM/yyyy"></ui5-datepicker>
                 </div>
-                <div>
+                <div style={{textAlign:"right"}}>
                     <br></br>
                     <ui5-label style={{ marginRight: '20px' }} className="Labels">{ availability !== undefined ? availability + ' Lugares Disponíveis' : ''}</ui5-label>
-                    <ui5-button onClick={create}>Check-in</ui5-button>
+                    { availability !== undefined &&  availability > 0 ? <ui5-button design="Positive" onClick={create}>Check-in</ui5-button> : <ui5-button design="Positive" disabled>Check-in</ui5-button> }
                 </div>
             </Grid>
-            <div>
-                <ui5-messagestrip type="Positive" style={{display:inserted ? 'inline' : 'none'}}>Check-in Realizado!</ui5-messagestrip>
-                <ui5-messagestrip type="Negative" style={{display:insertedError ? 'inline' : 'none'}}>Erro ao inserir o check-in, Tente novamente em alguns instantes.</ui5-messagestrip>
+            <Grid defaultSpan="XL12 L12 M12 S12">
                 <div>
                     <ui5-title level="H4">Meus Agendamentos</ui5-title>
                 </div>
@@ -290,13 +304,13 @@ function CheckIn() {
                             <span>Data</span>
                         </ui5-table-column>
 
-                        {/* <ui5-table-column slot="columns" popin-text="Weight" demand-popin>
-                            <span>Ativo</span>
-                        </ui5-table-column> */}
+                        <ui5-table-column slot="columns" popin-text="Weight" demand-popin>
+                            <span>Cancelar</span>
+                        </ui5-table-column>
                         {
                             checkIns.map((rowCheckIn, i ) => {
                                 return (
-                                    <ui5-table-row>
+                                    <ui5-table-row key={rowCheckIn.id}>
                                         <ui5-table-cell popin-text="Weight" demand-popin>
                                             <span>{rowCheckIn.officeName}</span>
                                         </ui5-table-cell>
@@ -306,21 +320,24 @@ function CheckIn() {
                                         <ui5-table-cell popin-text="Weight" demand-popin>
                                             <span>{Moment(rowCheckIn.date).format('DD/MM/YYYY')}</span>
                                         </ui5-table-cell>
-                                        {/* <ui5-table-cell popin-text="Weight" demand-popin>
-                                            {
-                                                rowCheckIn.active === 1 ? <ui5-switch graphical checked></ui5-switch> : <ui5-switch graphical></ui5-switch>
-                                            }
-                                        </ui5-table-cell> */}
+                                        <ui5-table-cell popin-text="Weight" demand-popin>
+                                            <span onClick={e => cancel(rowCheckIn.ID)}>
+                                                <ui5-button icon="cancel" design="Negative" aria-labelledby="lblCancel"></ui5-button>
+                                            </span>
+                                        </ui5-table-cell>
                                     </ui5-table-row>
                                 )
                             })
                         }
                     </ui5-table>
                 </div>
-            </div>
+            </Grid>
+            <ui5-toast id="wcToastBasic">{toastMsg}</ui5-toast>
         </div>
         
     )
 }
 
 export default CheckIn
+
+  

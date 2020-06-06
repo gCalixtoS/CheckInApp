@@ -6,46 +6,49 @@ import "@ui5/webcomponents/dist/Button"
 import { LineChart } from '@ui5/webcomponents-react-charts/lib/next/LineChart'
 
 
-const url = 'http://localhost:4004/catalog/'
-function Report() {
 
-    const [occupied, setOccupied] = useState([])
+function Report() {
+    const url = process.env.REACT_APP_CHECKINAPI
+    
+    const [dates, setDates] = useState([])
+    const [measures, setMeasures ] = useState([])
+    const [occupied,setOccupied] = useState([])
+    
 
     useEffect(() => {
-        axios.get(`${url}OccupiedCapacity`)
+        axios.get(`${url}OccupiedCapacity?$orderby=date desc`)
         .then(resp => {
-            let chartData = resp.data.value.map((item) => {
-                return {
-                    date : Moment(item.date).format('DD/MM/YYYY'),
-                    officeFloor : item.officeFloor,
-                    OccupiedCapacity : item.OccupiedCapacity
+            let officesArray = []
+            let mArray = []
+            let dDates = []
+            let datesArray = []
+            const chartData = resp.data.value.map((item) => {
+                if( !officesArray.includes(item.officeFloor)){
+                    officesArray.push(item.officeFloor)
+                    mArray.push({
+                        accessor : item.officeFloor,
+                        label : item.officeFloor
+                    })
                 }
+                item[item.officeFloor] = item.OccupiedCapacity
+                return item
             })
-            
-            setOccupied(resp.data.value)
+            dDates.push({
+                accessor: 'date',
+                formatter:  (d) => Moment(d).format('DD/MM/YYYY'),
+                interval: 0
+            })
+            setDates(dDates)
+            setMeasures(mArray)
+            setOccupied(chartData)         
         })
     }, [])
     return (
         <LineChart
             style={{ width: '100%' }}
             dataset={occupied}
-            dimensions={[
-                {
-                    accessor: 'date',
-                    formatter: (d) => Moment(d).format('DD/MM/YYYY'),
-                    interval: 0
-                }
-            ]}
-            measures={[
-                {
-                    accessor: 'officeFloor',
-                    label: 'Escritório - Andar'
-                },
-                {
-                    accessor : 'OccupiedCapacity',
-                    label: 'Capacidade Ocupada'
-                }
-            ]}
+            dimensions={dates}
+            measures={measures}
         />
     )
 }
