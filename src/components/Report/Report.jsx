@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Moment from 'moment'
 import axios from 'axios'
 
@@ -16,7 +16,7 @@ function Report() {
     
 
     useEffect(() => {
-        axios.get(`${url}OccupiedCapacity?$orderby=date desc`)
+        axios.get(`${url}OccupiedCapacity?$orderby=date asc`)
         .then(resp => {
             let officesArray = []
             let mArray = []

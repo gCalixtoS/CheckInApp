@@ -1,14 +1,20 @@
 import React from 'react'
-import { Grid } from '@ui5/webcomponents-react/lib/Grid'
 
-import Escritorios from './Escritorios/Escritorios'
+import { ProductSwitch } from '@ui5/webcomponents-react/lib/ProductSwitch'
+import { ProductSwitchItem } from '@ui5/webcomponents-react/lib/ProductSwitchItem'
 
-function Administracao() {
+import "@ui5/webcomponents-icons/dist/icons/building"
+import "@ui5/webcomponents-icons/dist/icons/map"
+import "@ui5/webcomponents-icons/dist/icons/shield"
+
+function Administracao() {    
     return (
         <div>
-            <Grid defaultSpan="XL12 L12 M12 S12">
-                <Escritorios />
-            </Grid>
+            <ProductSwitch style={{width:'100%'}} >
+                <ProductSwitchItem heading="Escritórios" subtitle="Gerenciamento dos Escritórios" icon="building" targetSrc={`/Administracao/Escritorios`}/>
+                <ProductSwitchItem heading="Andares" subtitle="Gerenciamento dos Andares" icon="map" targetSrc={`/Administracao/Andares`}/>
+                <ProductSwitchItem heading="Administradores" subtitle="Gerenciamento dos Administradores" icon="shield" targetSrc={`/Administracao/Administradores`}/>
+            </ProductSwitch>
         </div>
     )
 }

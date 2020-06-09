@@ -96,14 +96,14 @@ function CheckIn() {
     }
 
     var getCheckIns = (userID) => {
-        axios.get(`${url}CheckinAppList?$filter=user eq '${userID}'`)
+        axios.get(`${url}CheckinAppList?$filter=user eq '${userID}'&$orderby=ID desc`)
             .then(resp => {
-                setCheckIns(resp.data.value.reverse())
+                setCheckIns(resp.data.value)
             })
     }
 
     var getOffices = () => {
-        axios.get(`${url}Offices`)
+        axios.get(`${url}ActiveOffices`)
             .then(resp => { 
                 setOffices(resp.data.value)
                 setOffice(resp.data.value[0].ID)
@@ -125,7 +125,7 @@ function CheckIn() {
     }
 
     var getFloorCapacity = floorCapacity => {
-        axios.get(`${url}Floors?$filter=ID eq ${floorCapacity}`)
+        axios.get(`${url}ActiveFloors?$filter=ID eq ${floorCapacity}`)
                 .then(resp => {
                     setAvailability(resp.data.value[0].capacity)
                 })
@@ -133,7 +133,7 @@ function CheckIn() {
 
     var getFloors = officeFloor => {
         if (officeFloor !== undefined){
-            axios.get(`${url}Floors?$filter=office_ID eq ${officeFloor}`)
+            axios.get(`${url}ActiveFloors?$filter=office_ID eq ${officeFloor}`)
                 .then(resp => {
                     setFloors(resp.data.value)
                     setFloor(resp.data.value[0].ID)
@@ -175,7 +175,7 @@ function CheckIn() {
         axios.delete(`${url}CheckIn/${checkInId}`)
             .then((resp) => {
                 getCheckIns(user.user.id)
-                if (date != undefined) {
+                if (date !== undefined) {
                     getAvailability(Moment(date).format('YYYY-MM-DD'), +floor)
                 }
 
@@ -231,12 +231,10 @@ function CheckIn() {
 
     //close message strip
     useEffect(() => {
+        getUser()
+        getOffices()
         
-        window.onload = () => {
-            getUser()
-            getOffices()
-        }
-    })
+    }, [])
 
     useEffect(() => {
         if (user){
