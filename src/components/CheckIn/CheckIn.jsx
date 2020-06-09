@@ -144,8 +144,8 @@ function CheckIn() {
     var create = () => {
         axios.post(`${url}CheckIn`, {
             user : {ID: user.user.id, name: user.user.displayName, email: user.user.mail},
-            office : {ID : +office},
-            floor : {ID : +floor},
+            office_ID :  +office,
+            floor_ID : +floor,
             date : Moment(date).format('YYYY-DD-MM'),
             active : 1
         }).then(resp => {
