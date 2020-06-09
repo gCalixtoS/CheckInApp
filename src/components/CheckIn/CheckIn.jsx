@@ -27,6 +27,7 @@ import { getUserDetails } from '../../graph/GraphService'
 import './CheckIn.css'
 
 function CheckIn() {
+    Moment.locale('pt-br');
     const url = process.env.REACT_APP_CHECKINAPI
 
     const refOffice = useRef()
@@ -112,7 +113,7 @@ function CheckIn() {
 
     var getAvailability = (availableDate, availableFloor) => {
         if(availableDate !== undefined && availableFloor !== undefined){
-            axios.get(`${url}AvailableCapacity?$filter=date eq ${Moment(availableDate).format('YYYY-DD-MM')} and ID eq ${availableFloor}`)
+            axios.get(`${url}AvailableCapacity?$filter=date eq ${Moment(availableDate, 'DD/MM/YYYY').format('YYYY-MM-DD')} and ID eq ${availableFloor}`)
                 .then(resp => {
                     if (resp.data.value.length > 0){
                         setAvailability(resp.data.value[0].AvailableCapacity)
@@ -146,11 +147,11 @@ function CheckIn() {
             user : {ID: user.user.id, name: user.user.displayName, email: user.user.mail},
             office_ID :  +office,
             floor_ID : +floor,
-            date : Moment(date).format('YYYY-DD-MM'),
+            date : Moment(date, 'DD/MM/YYYY').format('YYYY-MM-DD'),
             active : 1
         }).then(resp => {
             getCheckIns(user.user.id)
-            getAvailability(Moment(date).format('YYYY-MM-DD'), +floor)
+            getAvailability(date, +floor)
 
             setToastMsg('Check-in Realizado!')
             document.getElementById('wcToastBasic').show()
@@ -176,7 +177,7 @@ function CheckIn() {
             .then((resp) => {
                 getCheckIns(user.user.id)
                 if (date !== undefined) {
-                    getAvailability(Moment(date).format('YYYY-MM-DD'), +floor)
+                    getAvailability(Moment(date, 'DD/MM/YYYY').format('YYYY-MM-DD'), +floor)
                 }
 
                 setToastMsg('Check-in Cancelado')
