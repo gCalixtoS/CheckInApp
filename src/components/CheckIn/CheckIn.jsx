@@ -177,7 +177,7 @@ function CheckIn() {
             .then((resp) => {
                 getCheckIns(user.user.id)
                 if (date !== undefined) {
-                    getAvailability(Moment(date, 'DD/MM/YYYY').format('YYYY-MM-DD'), +floor)
+                    getAvailability(date, +floor)
                 }
 
                 setToastMsg('Check-in Cancelado')
