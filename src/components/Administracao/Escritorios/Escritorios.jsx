@@ -85,7 +85,7 @@ function Escritorios() {
                     </Input>
                 </div>
                 <div style={{ textAlign: "right" }}>
-                    <ui5-button design="Positive" icon="add" onClick={e => { openDialog(false) }}>Novo</ui5-button>
+                    <ui5-button design="Emphasized" icon="add" onClick={e => { openDialog(false) }}>Novo Escritório</ui5-button>
                 </div>
                 <div>
                     <ui5-table class="demo-table" no-data-text="Nenhum escritório foi encontrado. Clique em adicionar para criar um novo." show-no-data>
@@ -102,8 +102,12 @@ function Escritorios() {
                         </ui5-table-column>
 
                         <ui5-table-column slot="columns" popin-text="Weight" demand-popin>
-                            <span>Ação</span>
+                            <span>Edição</span>
                         </ui5-table-column>
+                        <ui5-table-column slot="columns" popin-text="Weight" demand-popin>
+                            <span>Ativo</span>
+                        </ui5-table-column>
+                        
                         {
                             offices.map((office) => {
                                 return (
@@ -121,6 +125,8 @@ function Escritorios() {
                                             <span onClick={e => { openDialog(office.ID) }} style={{float: "left"}}>
                                                 <ui5-button icon="edit" aria-labelledby="lblEdit" style={{ margin: '0 8px 8px 0' }} ></ui5-button>
                                             </span>
+                                        </ui5-table-cell>
+                                        <ui5-table-cell popin-text="Weight" demand-popin>
                                             <span>
                                                 <Switch checked={office.active === 1} graphical onChange={e => putStatus(e.target.checked, office.ID)}></Switch>
                                             </span>

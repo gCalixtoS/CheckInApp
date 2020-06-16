@@ -54,7 +54,7 @@ function Floors() {
                     <SearchBar searchObject="FloorsList" searchField="floorName" searchPlaceholder="andar" setResult={(data) => setFloors(data)} refresh={refresh}/>
                 </div>
                 <div style={{ textAlign: "right" }}>
-                    <CreateButton refDialog={refFormDialog} setState={ (id) => setFloorId(id)}/>
+                    <CreateButton placeholder="Andar" refDialog={refFormDialog} setState={ (id) => setFloorId(id)}/>
                 </div>
                 <div>
                     <ui5-table class="demo-table" no-data-text="Nenhum escritório foi encontrado. Clique em adicionar para criar um novo." show-no-data>
@@ -71,7 +71,11 @@ function Floors() {
                         </ui5-table-column>
 
                         <ui5-table-column slot="columns" popin-text="Weight" demand-popin>
-                            <span>Ação</span>
+                            <span>Edição</span>
+                        </ui5-table-column>
+
+                        <ui5-table-column slot="columns" popin-text="Weight" demand-popin>
+                            <span>Ativo</span>
                         </ui5-table-column>
                         {
                             floors.map((floor) => {
@@ -87,12 +91,14 @@ function Floors() {
                                             <span>{floor.officeName}</span>
                                         </ui5-table-cell>
                                         <ui5-table-cell popin-text="Weight" demand-popin>
-                                        <span style={{float: "left"}}>
-                                            <EditButton editId={floor.ID} refDialog={refFormDialog} setState={ (id) => setFloorId(id)}/>
-                                        </span>
-                                        <span>
-                                            <Switch checked={floor.active === 1} graphical onChange={e => putStatus(e.target.checked, floor.ID)}></Switch>
-                                        </span>
+                                            <span style={{float: "left"}}>
+                                                <EditButton editId={floor.ID} refDialog={refFormDialog} setState={ (id) => setFloorId(id)}/>
+                                            </span>
+                                        </ui5-table-cell>
+                                        <ui5-table-cell popin-text="Weight" demand-popin>
+                                            <span>
+                                                <Switch checked={floor.active === 1} graphical onChange={e => putStatus(e.target.checked, floor.ID)}></Switch>
+                                            </span>
                                         </ui5-table-cell>
                                     </ui5-table-row>
                                 )

@@ -27,8 +27,8 @@ function Floors() {
 
     const refFormDialog = useRef()
 
-    var putStatus = (checked, floorId) => {
-        axios.put(`${url}Floors/${floorId}`, {
+    var putStatus = (checked, adminId) => {
+        axios.put(`${url}SecurityGuards/${adminId}`, {
             active : checked ? 1 : 0
         }).then(resp => {
             setToastMsg( checked ?'Andar Ativado!' :'Andar Desativado!')
@@ -54,7 +54,7 @@ function Floors() {
                     <SearchBar searchObject="SecurityGuards" searchField="name" searchPlaceholder="administrador" setResult={(data) => setAdministrators(data)} refresh={refresh}/>
                 </div>
                 <div style={{ textAlign: "right" }}>
-                    <CreateButton refDialog={refFormDialog} setState={ (id) => setAdministratorId(id)}/>
+                    <CreateButton placeholder="Administrador" refDialog={refFormDialog} setState={ (id) => setAdministratorId(id)}/>
                 </div>
                 <div>
                     <ui5-table class="demo-table" no-data-text="Nenhum administrador foi encontrado. Clique em adicionar para criar um novo." show-no-data>
@@ -67,7 +67,11 @@ function Floors() {
                         </ui5-table-column>
 
                         <ui5-table-column slot="columns" popin-text="Weight" demand-popin>
-                            <span>Ação</span>
+                            <span>Edição</span>
+                        </ui5-table-column>
+
+                        <ui5-table-column slot="columns" popin-text="Weight" demand-popin>
+                            <span>Ativo</span>
                         </ui5-table-column>
                         {
                             administrators.map((administrator) => {
@@ -83,9 +87,11 @@ function Floors() {
                                             <span style={{float: "left"}}>
                                                 <EditButton editId={administrator.ID} refDialog={refFormDialog} setState={ (id) => setAdministratorId(id)}/>
                                             </span>
-                                            {/* <span>
-                                                <Switch checked={floor.active === 1} graphical onChange={e => putStatus(e.target.checked, floor.ID)}></Switch>
-                                            </span> */}
+                                        </ui5-table-cell>
+                                        <ui5-table-cell popin-text="Weight" demand-popin>
+                                            <span>
+                                                <Switch checked={administrator.active === 1} graphical onChange={e => putStatus(e.target.checked, administrator.ID)}></Switch>
+                                            </span>
                                         </ui5-table-cell>
                                     </ui5-table-row>
                                 )
@@ -94,7 +100,7 @@ function Floors() {
                     </ui5-table>
                 </div>
                 <div>
-                    <AdministratorForm administratorId={administratorId}  dialogRef={refFormDialog} doneCallback={() => setRefresh(!refresh) }/>
+                    <AdministratorForm administratorId={administratorId}  dialogRef={refFormDialog} doneCallback={() => {setRefresh(!refresh); setAdministratorId(false)} }/>
                 </div>
             </Grid>
             <ui5-toast id="toastFloors">{toastMsg}</ui5-toast>

@@ -14,6 +14,7 @@ import { Title } from '@ui5/webcomponents-react/lib/Title'
 import { Label } from '@ui5/webcomponents-react/lib/Label'
 import { Input } from '@ui5/webcomponents-react/lib/Input'
 import { Toast } from '@ui5/webcomponents-react/lib/Toast'
+import { Button } from '@ui5/webcomponents-react/lib/Button'
 
 function FloorsForm(props) {
     const url = process.env.REACT_APP_CHECKINAPI
@@ -29,7 +30,7 @@ function FloorsForm(props) {
 
     const [offices, setOffices] = useState([])
     const [administrators, setAdministrators] = useState([])
-    const [ administrator, setAdministrator] = useState()
+    const [administrator, setAdministrator] = useState()
     const [securityGuards, setSecurityGuards] = useState([])
 
     const [toastMsg, setToastMsg] = useState()
@@ -95,9 +96,9 @@ function FloorsForm(props) {
     }
 
     var addAdministrator = () => {
-        axios.post(`${url}FloorSecurityGuards`,{
-            floor_ID : +props.floorId,
-            securityGuard_ID : administrator
+        axios.post(`${url}FloorSecurityGuards`, {
+            floor_ID: +props.floorId,
+            securityGuard_ID: administrator
         }).then((resp) => {
             axios.get(`${url}Administrators?$filter=floorId eq ${props.floorId}`)
                 .then(resp => {
@@ -119,6 +120,9 @@ function FloorsForm(props) {
     /*---------------------------------------------------------------------------------------*/
     useEffect(() => {
         if (props.floorId) {
+            refAdministrator.current.addEventListener('change', (event) => {
+                setName(event.target.options[event.target._selectedIndex].value)
+            })
             axios.get(`${url}Floors?$filter=ID eq ${props.floorId}`)
                 .then(resp => {
                     setName(resp.data.value[0].name)
@@ -135,6 +139,10 @@ function FloorsForm(props) {
                 .then(resp => {
                     setAdministrators(resp.data.value)
                 })
+        }else{
+            setName('')
+            setCapacity('')
+            setOffice('')
         }
         axios.get(`${url}Offices`)
             .then(resp => {
@@ -145,12 +153,6 @@ function FloorsForm(props) {
     }, [props.floorId])
 
     useEffect(() => {
-        if (refAdministrator.current !== undefined){
-            refAdministrator.current.addEventListener('change', (event) => {
-                setName(event.target.options[event.target._selectedIndex].value)
-            })
-        }
-        
         refName.current.addEventListener('input', (event) => {
             setName(event.target.value)
         })
@@ -160,18 +162,7 @@ function FloorsForm(props) {
         refOffice.current.addEventListener('change', (event) => {
             setOffice(event.target.options[event.target._selectedIndex].value)
         })
-        props.dialogRef.current.addEventListener('afterClose', (event) => {
-            setName('')
-            setCapacity('')
-            setOffice('')
-        })
         return () => {
-            if(refAdministrator.current !== undefined){
-                refAdministrator.current.addEventListener('change', (event) => {
-                    setName(event.target.options[event.target._selectedIndex].value)
-                })
-            }
-            
             refName.current.addEventListener('input', (event) => {
                 setName(event.target.value)
             })
@@ -195,14 +186,14 @@ function FloorsForm(props) {
                             <span style={{ textAlign: 'left', float: 'left', paddingTop: '0.5%' }}>
                                 <Title level="H3">{!props.floorId ? 'Novo Andar' : name}</Title>
                             </span>
-                            <ui5-button style={{ marginRight: '8px' }} design="Negative" icon="cancel" onClick={e => { props.dialogRef.current.close() }}></ui5-button>
                         </div>
                     </Grid>
                 }
                 footer={
                     <Grid defaultSpan="XL12 L12 M12 S12">
-                        <div style={{ marginTop: '1.2%', textAlign: 'right' }}>
-                            {props.floorId ? <ui5-button design="Positive" icon="edit" onClick={edit}>Editar</ui5-button> : <ui5-button design="Positive" icon="add" onClick={create}>Adicionar</ui5-button>}
+                        <div style={{ textAlign: 'right', paddingTop:'8px' }}>
+                            {props.floorId ? <Button design="Emphasized" icon="edit" onClick={edit} style={{verticalAlign:'top'}}>Editar</Button> : <Button design="Emphasized" icon="add" onClick={create} style={{verticalAlign:'top'}}>Adicionar</Button>}
+                            <Button style={{marginLeft:'8px'}} design="Transparent" onClick={e => { props.dialogRef.current.close() }}>Cancelar</Button>
                         </div>
                     </Grid>
                 }
@@ -221,7 +212,7 @@ function FloorsForm(props) {
                         <ui5-select style={{ width: '100%' }} value={office} ref={refOffice} class="select" id="escritorio" aria-required="true" aria-labelledby="myLabel3">
                             {
                                 offices.map((optOffice) => {
-                                    if (optOffice.ID === office){
+                                    if (optOffice.ID === office) {
                                         return (
                                             <ui5-option key={optOffice.ID} value={optOffice.ID} selected>{optOffice.name}</ui5-option>
                                         )
@@ -251,7 +242,7 @@ function FloorsForm(props) {
                                         })
                                     }
                                 </ui5-select>
-                                <ui5-button design="Positive" icon="add" style={{ verticalAlign : 'middle', float:"right"}} onClick={addAdministrator}></ui5-button>
+                                <ui5-button design="Emphasized" icon="add" style={{ verticalAlign: 'middle', float: "right" }} onClick={addAdministrator}></ui5-button>
                             </div>
                             <div>
                                 <ui5-table class="demo-table" no-data-text="Nenhum Administrador foi encontrado." show-no-data>
@@ -274,7 +265,7 @@ function FloorsForm(props) {
                                                     <span>{administrator.securityGuardEmail}</span>
                                                 </ui5-table-cell>
                                                 <ui5-table-cell style={{ verticalAlign: 'middle' }} popin-text="Weight" demand-popin>
-                                                    <ui5-button design="Negative" icon="delete" onClick={e => deleteAdministrator(administrator.ID)}></ui5-button>
+                                                    <ui5-button design="Default" icon="delete" onClick={e => deleteAdministrator(administrator.ID)}></ui5-button>
                                                 </ui5-table-cell>
                                             </ui5-table-row>
                                         ))

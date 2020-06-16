@@ -8,7 +8,7 @@ function CreateButton(props) {
     }
 
     return (
-        <ui5-button design="Positive" icon="add" onClick={e => { openDialog(false) }}>Novo</ui5-button>
+        <ui5-button design="Emphasized" icon="add" onClick={e => { openDialog(false) }}>Novo {props.placeholder}</ui5-button>
     )
 }
 

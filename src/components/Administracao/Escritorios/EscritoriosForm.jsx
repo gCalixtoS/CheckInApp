@@ -14,6 +14,7 @@ import { Label } from '@ui5/webcomponents-react/lib/Label'
 import { Input } from '@ui5/webcomponents-react/lib/Input'
 import { Toast } from '@ui5/webcomponents-react/lib/Toast'
 import { Switch } from '@ui5/webcomponents-react/lib/Switch'
+import { Button } from '@ui5/webcomponents-react/lib/Button'
 
 function EscritoriosForm(props) {
     const url = process.env.REACT_APP_CHECKINAPI
@@ -102,6 +103,10 @@ function EscritoriosForm(props) {
                 .then(resp => {
                     setFloors(resp.data.value)
                 })
+        }else{
+            setName('')
+            setCode('')
+            setLocalization('')
         }
     }, [props.officeId])
 
@@ -114,11 +119,6 @@ function EscritoriosForm(props) {
         })
         refLocalization.current.addEventListener('input', (event) => {
             setLocalization(event.target.value)
-        })
-        props.dialogRef.current.addEventListener('afterClose', (event) => {
-            setName('')
-            setCode('')
-            setLocalization('')
         })
         return () => {
             refName.current.removeEventListener('input', (event) => {
@@ -144,14 +144,14 @@ function EscritoriosForm(props) {
                             <span style={{ textAlign: 'left', float: 'left', paddingTop: '0.5%' }}>
                                 <Title level="H3">{!props.officeId ? 'Novo Escritório' : name}</Title>
                             </span>
-                            <ui5-button style={{ marginRight: '8px' }} design="Negative" icon="cancel" onClick={e => { props.dialogRef.current.close() }}></ui5-button>
                         </div>
                     </Grid>
                 }
                 footer={
                     <Grid defaultSpan="XL12 L12 M12 S12">
-                        <div style={{ marginTop: '1.2%', textAlign: 'right' }}>
-                            {props.officeId ? <ui5-button design="Positive" icon="edit" onClick={edit}>Editar</ui5-button> : <ui5-button design="Positive" icon="add" onClick={create}>Adicionar</ui5-button>}
+                        <div style={{ textAlign: 'right', paddingTop:'8px' }}>
+                            {props.officeId ? <Button design="Emphasized" icon="edit" onClick={edit} style={{verticalAlign:'top'}}>Editar</Button> : <Button design="Emphasized" icon="add" onClick={create} style={{verticalAlign:'top'}}>Adicionar</Button>}
+                            <Button style={{marginLeft:'8px'}} design="Transparent" onClick={e => { props.dialogRef.current.close() }}>Cancelar</Button>
                         </div>
                     </Grid>
                 }

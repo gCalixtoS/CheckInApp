@@ -14,6 +14,7 @@ import { Title } from '@ui5/webcomponents-react/lib/Title'
 import { Label } from '@ui5/webcomponents-react/lib/Label'
 import { Input } from '@ui5/webcomponents-react/lib/Input'
 import { Toast } from '@ui5/webcomponents-react/lib/Toast'
+import { Button } from '@ui5/webcomponents-react/lib/Button'
 
 function AdministratorsForm(props) {
     const url = process.env.REACT_APP_CHECKINAPI
@@ -97,6 +98,9 @@ function AdministratorsForm(props) {
 
     useEffect(() => {
         if (props.administratorId) {
+            refFloor.current.addEventListener('change', (event) => {
+                setFloor(event.target.options[event.target._selectedIndex].value)
+            })
             axios.get(`${url}SecurityGuards?$filter=ID eq ${props.administratorId}`)
                 .then(resp => {
                     setName(resp.data.value[0].name)
@@ -112,43 +116,26 @@ function AdministratorsForm(props) {
                 .then(resp => {
                     setSecurityGuardsFloors(resp.data.value)
                 })
+        }else{
+            setName('')
+            setEmail('')
         }
     }, [props.administratorId])
 
     useEffect(() => {
-        if (refFloor.current !== undefined){
-            refFloor.current.addEventListener('change', (event) => {
-                setFloor(event.target.options[event.target._selectedIndex].value)
-            })
-        }
-        
+
         refName.current.addEventListener('input', (event) => {
             setName(event.target.value)
         })
         refEmail.current.addEventListener('input', (event) => {
             setEmail(event.target.value)
         })
-
-        props.dialogRef.current.addEventListener('afterClose', (event) => {
-            setName('')
-            setEmail('')
-        })
-        return () => {
-            if(refFloor.current !== undefined){
-                refFloor.current.addEventListener('change', (event) => {
-                    setFloor(event.target.options[event.target._selectedIndex].value)
-                })
-            }
-            
+        return () => {            
             refName.current.addEventListener('input', (event) => {
                 setName(event.target.value)
             })
             refEmail.current.addEventListener('input', (event) => {
                 setEmail(event.target.value)
-            })
-            props.dialogRef.current.addEventListener('afterClose', (event) => {
-                setName('')
-                setEmail('')
             })
         }
     })
@@ -164,14 +151,14 @@ function AdministratorsForm(props) {
                             <span style={{ textAlign: 'left', float: 'left', paddingTop: '0.5%' }}>
                                 <Title level="H3">{!props.administratorId ? 'Novo Administrador' : name}</Title>
                             </span>
-                            <ui5-button style={{ marginRight: '8px' }} design="Negative" icon="cancel" onClick={e => { props.dialogRef.current.close() }}></ui5-button>
                         </div>
                     </Grid>
                 }
                 footer={
                     <Grid defaultSpan="XL12 L12 M12 S12">
-                        <div style={{ marginTop: '1.2%', textAlign: 'right' }}>
-                            {props.administratorId ? <ui5-button design="Positive" icon="edit" onClick={edit}>Editar</ui5-button> : <ui5-button design="Positive" icon="add" onClick={create}>Adicionar</ui5-button>}
+                        <div style={{ textAlign: 'right', paddingTop:'8px' }}>
+                            {props.administratorId ? <Button design="Emphasized" icon="edit" onClick={edit} style={{verticalAlign:'top'}}>Editar</Button> : <Button design="Emphasized" icon="add" onClick={create} style={{verticalAlign:'top'}}>Adicionar</Button>}
+                            <Button style={{marginLeft:'8px'}} design="Transparent" onClick={e => { props.dialogRef.current.close() }}>Cancelar</Button>
                         </div>
                     </Grid>
                 }
@@ -203,7 +190,7 @@ function AdministratorsForm(props) {
                                         })
                                     }
                                 </ui5-select>
-                                <ui5-button design="Positive" icon="add" style={{ verticalAlign : 'middle', float:"right"}} onClick={addFloor}></ui5-button>
+                                <ui5-button design="Emphasized" icon="add" style={{ verticalAlign : 'middle', float:"right"}} onClick={addFloor}></ui5-button>
                             </div>
                             <div>
                                 <ui5-table class="demo-table" no-data-text="Nenhum Andar foi encontrado." show-no-data>
@@ -226,7 +213,7 @@ function AdministratorsForm(props) {
                                                     <span>{floor.capacity}</span>
                                                 </ui5-table-cell>
                                                 <ui5-table-cell style={{ verticalAlign: 'middle' }} popin-text="Weight" demand-popin>
-                                                    <ui5-button design="Negative" icon="delete" onClick={e => deleteFloor(floor.ID)}></ui5-button>
+                                                    <ui5-button design="Default" icon="delete" onClick={e => deleteFloor(floor.ID)}></ui5-button>
                                                 </ui5-table-cell>
                                             </ui5-table-row>
                                         ))

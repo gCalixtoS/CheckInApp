@@ -280,9 +280,12 @@ function CheckIn() {
                     <ui5-datepicker style={{ width: '100%' }} ref={refDate} value={date} id="data" min-date={new Date().toLocaleDateString('PT')} max-date={getMaxDate()} format-pattern="dd/MM/yyyy"></ui5-datepicker>
                 </div>
                 <div style={{textAlign:"right"}}>
+                    <div style={{float:'left', textAlign:'right'}}>
+                        <ui5-title level="H4" style={{marginTop:'8.5%'}}>{ availability !== undefined ? availability + ' Lugares Disponíveis' : ''}</ui5-title>
+                        <ui5-label className="Labels">{ availability !== undefined ? 'Para o dia ' + date  : ''}</ui5-label>
+                    </div>
                     <br></br>
-                    <ui5-label style={{ marginRight: '20px' }} className="Labels">{ availability !== undefined ? availability + ' Lugares Disponíveis' : ''}</ui5-label>
-                    { availability !== undefined &&  availability > 0 ? <ui5-button design="Positive" onClick={create}>Check-in</ui5-button> : <ui5-button design="Positive" disabled>Check-in</ui5-button> }
+                    { availability !== undefined &&  availability > 0 ? <ui5-button design="Emphasized" onClick={create}>Check-in</ui5-button> : <ui5-button design="Emphasized" disabled>Check-in</ui5-button> }
                 </div>
             </Grid>
             <Grid defaultSpan="XL12 L12 M12 S12">
@@ -321,7 +324,7 @@ function CheckIn() {
                                         </ui5-table-cell>
                                         <ui5-table-cell popin-text="Weight" demand-popin>
                                             <span onClick={e => cancel(rowCheckIn.ID)}>
-                                                <ui5-button icon="cancel" design="Negative" aria-labelledby="lblCancel"></ui5-button>
+                                                <ui5-button icon="cancel" aria-labelledby="lblCancel"></ui5-button>
                                             </span>
                                         </ui5-table-cell>
                                     </ui5-table-row>
