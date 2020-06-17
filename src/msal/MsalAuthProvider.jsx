@@ -75,12 +75,6 @@ export function withAuth(HocComponent) {
             if (this.state.isAuthenticated) {
                 return <HocComponent auth={this.state} onSignIn={() => this.onSignIn()} onSignOut={() => this.onSignOut() } {...this.props} />
             }
-
-            if (this.state.hasError) {
-                return <div>{this.state.errorMessage}</div>
-            }
-
-            return <div>Login in progress...</div>
         }
     }
 }
