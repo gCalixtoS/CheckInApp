@@ -177,7 +177,7 @@ function EscritoriosForm(props) {
                                 <Title level="H5">Andares</Title>
                             </div>
                             <div>
-                                <ui5-table class="demo-table" no-data-text="Nenhum escritório foi encontrado. Clique em adicionar para criar um novo." show-no-data>
+                                <ui5-table class="demo-table" no-data-text="Nenhum andar foi encontrado. Clique em adicionar para criar um novo." show-no-data>
                                     <ui5-table-column slot="columns">
                                         <span>Andar</span>
                                     </ui5-table-column>

@@ -258,7 +258,7 @@ function CheckIn() {
                     </ui5-select>
                 </div>
                 <div>
-                    <ui5-label style={{ width: '100%' }} className="Labels" id="lblLocalidade" for="localidade" required>Localidade: </ui5-label>
+                    <ui5-label style={{ width: '100%' }} className="Labels" id="lblLocalidade" for="localidade" required>Andar: </ui5-label>
                     <ui5-select style={{ width: '100%' }} ref={refFloor} value={floor} class="select" id="localidade">
                         {
                             floors.map(optFloors => {
