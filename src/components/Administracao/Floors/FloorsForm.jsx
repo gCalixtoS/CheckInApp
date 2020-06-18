@@ -78,27 +78,10 @@ function FloorsForm(props) {
         })
     }
 
-    var putStatus = (checked, floorId) => {
-        axios.put(`${url}Administrators/${floorId}`, {
-            active: checked ? 1 : 0
-        }).then(resp => {
-            setToastMsg(checked ? 'Andar Ativado!' : 'Andar Desativado!')
-            document.getElementById('toastFloorsForm').show()
-        }).catch((error) => {
-            if (error.response.data.error.code === "400") {
-                setToastMsg(error.response.data.error.message)
-            } else {
-                setToastMsg('Erro ao atualizar o andar, Tente novamente em alguns instantes.')
-            }
-
-            document.getElementById('toastFloorsForm').show()
-        })
-    }
-
     var addAdministrator = () => {
         axios.post(`${url}FloorSecurityGuards`, {
             floor_ID: +props.floorId,
-            securityGuard_ID: administrator
+            securityGuard_ID: +administrator
         }).then((resp) => {
             axios.get(`${url}Administrators?$filter=floorId eq ${props.floorId}`)
                 .then(resp => {
@@ -121,7 +104,7 @@ function FloorsForm(props) {
     useEffect(() => {
         if (props.floorId) {
             refAdministrator.current.addEventListener('change', (event) => {
-                setName(event.target.options[event.target._selectedIndex].value)
+                setAdministrator(event.target.options[event.target._selectedIndex].value)
             })
             axios.get(`${url}Floors?$filter=ID eq ${props.floorId}`)
                 .then(resp => {
