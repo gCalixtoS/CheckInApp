@@ -145,13 +145,13 @@ function CheckIn() {
     var create = () => {
         axios.post(`${url}CheckIn`, {
             user : {ID: user.user.id, name: user.user.displayName, email: user.user.mail},
-            office_ID :  +office,
-            floor_ID : +floor,
+            office_ID :  office,
+            floor_ID : floor,
             date : Moment(date, 'DD/MM/YYYY').format('YYYY-MM-DD'),
             active : 1
         }).then(resp => {
             getCheckIns(user.user.id)
-            getAvailability(date, +floor)
+            getAvailability(date, floor)
 
             setToastMsg('Check-in Realizado!')
             document.getElementById('wcToastBasic').show()
@@ -177,7 +177,7 @@ function CheckIn() {
             .then((resp) => {
                 getCheckIns(user.user.id)
                 if (date !== undefined) {
-                    getAvailability(date, +floor)
+                    getAvailability(date, floor)
                 }
 
                 setToastMsg('Check-in Cancelado')

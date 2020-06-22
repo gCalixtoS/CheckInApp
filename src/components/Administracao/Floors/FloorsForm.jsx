@@ -39,9 +39,13 @@ function FloorsForm(props) {
         axios.post(`${url}Floors`, {
             name: name,
             capacity: +capacity,
-            office_ID: +office,
+            office_ID: office,
             active: 1
         }).then(resp => {
+            setName('')
+            setCapacity('')
+            setOffice('')
+
             setToastMsg('Andar Cadastrado!')
             props.dialogRef.current.close()
             document.getElementById('toastFloorsForm').show()
@@ -60,8 +64,8 @@ function FloorsForm(props) {
     var edit = () => {
         axios.put(`${url}Floors/${props.floorId}`, {
             name: name,
-            capacity: capacity,
-            office_ID: +office,
+            capacity: +capacity,
+            office_ID: office,
         }).then(resp => {
             setToastMsg('Escritório Atualizado!')
             props.dialogRef.current.close()
@@ -80,8 +84,8 @@ function FloorsForm(props) {
 
     var addAdministrator = () => {
         axios.post(`${url}FloorSecurityGuards`, {
-            floor_ID: +props.floorId,
-            securityGuard_ID: +administrator
+            floor_ID: props.floorId,
+            securityGuard_ID: administrator
         }).then((resp) => {
             axios.get(`${url}Administrators?$filter=floorId eq ${props.floorId}`)
                 .then(resp => {

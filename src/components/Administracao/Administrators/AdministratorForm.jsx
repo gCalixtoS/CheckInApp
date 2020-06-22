@@ -37,15 +37,13 @@ function AdministratorsForm(props) {
             name: name,
             email: email
         }).then(resp => {
-            setToastMsg('Escritório Atualizado!')
+
             props.dialogRef.current.close()
             document.getElementById('toastAdministratorForm').show()
             props.doneCallback()
         }).catch((error) => {
             if (error.response.data.error.code === "400") {
                 setToastMsg(error.response.data.error.message)
-            } else {
-                setToastMsg('Erro ao atualizar o escritório, Tente novamente em alguns instantes.')
             }
 
             document.getElementById('toastAdministratorForm').show()
@@ -58,7 +56,9 @@ function AdministratorsForm(props) {
             email: email,
             active: 1
         }).then(resp => {
-            setToastMsg('Andar Cadastrado!')
+            setName('')
+            setEmail('')
+
             props.dialogRef.current.close()
             document.getElementById('toastAdministratorForm').show()
             props.doneCallback()
@@ -75,7 +75,7 @@ function AdministratorsForm(props) {
 
     var addFloor = () => {
         axios.post(`${url}FloorSecurityGuards`,{
-            floor_ID : +floor,
+            floor_ID : floor,
             securityGuard_ID : props.administratorId
         }).then((resp) => {
             axios.get(`${url}Administrators?$filter=securityGuardId eq ${props.administratorId}`)
