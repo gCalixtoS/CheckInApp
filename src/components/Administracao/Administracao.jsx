@@ -12,7 +12,7 @@ function Administracao() {
         <div>
             <ProductSwitch style={{width:'100%'}} >
                 <ProductSwitchItem heading="Escritórios" subtitle="Gerenciamento dos Escritórios" icon="building" targetSrc={`/Administracao/Escritorios`}/>
-                <ProductSwitchItem heading="Andares" subtitle="Gerenciamento dos Andares" icon="map" targetSrc={`/Administracao/Andares`}/>
+                <ProductSwitchItem heading="Localidades" subtitle="Gerenciamento das Localidades" icon="map" targetSrc={`/Administracao/Localidades`}/>
                 <ProductSwitchItem heading="Administradores" subtitle="Gerenciamento dos Administradores" icon="shield" targetSrc={`/Administracao/Administradores`}/>
             </ProductSwitch>
         </div>

@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react'
+import { useSelector, shallowEqual } from "react-redux"
 import axios from 'axios'
 
 import { Grid } from '@ui5/webcomponents-react/lib/Grid'
@@ -7,7 +8,7 @@ import "@ui5/webcomponents/dist/Toast"
 
 import SearchBar from '../SearchBar/SearchBar'
 import BreadcrumbBar from '../BreadcrumbBar/BreadcrumbBar'
-// import RestultTable from '../ResultTable/ResultTable'
+
 import EditButton from '../EditButton/EditButton'
 import CreateButton from '../CreateButton/CreateButton'
 import AdministratorForm from './AdministratorForm'
@@ -18,7 +19,11 @@ import "@ui5/webcomponents/dist/TableRow"
 import "@ui5/webcomponents/dist/TableCell"
 
 function Floors() {
-    const url = process.env.REACT_APP_CHECKINAPI
+    const url = process.env.REACT_APP_CHECKINAPI_ADM
+
+    const { admintoken } = useSelector(state => ({
+        admintoken: state.authToken.admintoken
+    }), shallowEqual)
 
     const [administrators, setAdministrators] = useState([])
     const [administratorId, setAdministratorId] = useState(false)
@@ -30,14 +35,18 @@ function Floors() {
     var putStatus = (checked, adminId) => {
         axios.put(`${url}SecurityGuards/${adminId}`, {
             active : checked ? 1 : 0
+        }, {
+            headers: {
+                idtoken: admintoken
+            }
         }).then(resp => {
-            setToastMsg( checked ?'Andar Ativado!' :'Andar Desativado!')
+            setToastMsg( checked ?'Localidade Ativada!' :'Localidade Desativada!')
             document.getElementById('toastFloors').show()
         }).catch((error) => {
             if (error.response.data.error.code === "400") {
                 setToastMsg(error.response.data.error.message)
             } else {
-                setToastMsg('Erro ao atualizar o andar, Tente novamente em alguns instantes.')
+                setToastMsg('Erro ao atualizar a localidade, tente novamente em alguns instantes.')
             }
 
             document.getElementById('toastFloors').show()

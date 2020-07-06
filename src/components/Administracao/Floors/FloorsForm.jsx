@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
+import { useSelector, shallowEqual } from "react-redux"
 import axios from 'axios'
 
 import "@ui5/webcomponents/dist/Table"
@@ -17,7 +18,11 @@ import { Toast } from '@ui5/webcomponents-react/lib/Toast'
 import { Button } from '@ui5/webcomponents-react/lib/Button'
 
 function FloorsForm(props) {
-    const url = process.env.REACT_APP_CHECKINAPI
+    const url = process.env.REACT_APP_CHECKINAPI_ADM
+
+    const { admintoken } = useSelector(state => ({
+        admintoken: state.authToken.admintoken
+    }), shallowEqual)
 
     const refCapacity = useRef()
     const refName = useRef()
@@ -41,12 +46,16 @@ function FloorsForm(props) {
             capacity: +capacity,
             office_ID: office,
             active: 1
+        }, {
+            headers: {
+                idtoken: admintoken
+            }
         }).then(resp => {
             setName('')
             setCapacity('')
             setOffice('')
 
-            setToastMsg('Andar Cadastrado!')
+            setToastMsg('Localidade Cadastrada!')
             props.dialogRef.current.close()
             document.getElementById('toastFloorsForm').show()
             props.doneCallback()
@@ -66,6 +75,10 @@ function FloorsForm(props) {
             name: name,
             capacity: +capacity,
             office_ID: office,
+        }, {
+            headers: {
+                idtoken: admintoken
+            }
         }).then(resp => {
             setToastMsg('Escritório Atualizado!')
             props.dialogRef.current.close()
@@ -86,8 +99,16 @@ function FloorsForm(props) {
         axios.post(`${url}FloorSecurityGuards`, {
             floor_ID: props.floorId,
             securityGuard_ID: administrator
+        }, {
+            headers: {
+                idtoken: admintoken
+            }
         }).then((resp) => {
-            axios.get(`${url}Administrators?$filter=floorId eq ${props.floorId}`)
+            axios.get(`${url}Administrators?$filter=floorId eq ${props.floorId}`, {
+                headers: {
+                    idtoken: admintoken
+                }
+            })
                 .then(resp => {
                     setAdministrators(resp.data.value)
                 })
@@ -95,9 +116,17 @@ function FloorsForm(props) {
     }
 
     var deleteAdministrator = (adminId) => {
-        axios.delete(`${url}FloorSecurityGuards/${adminId}`)
+        axios.delete(`${url}FloorSecurityGuards/${adminId}`, {
+            headers: {
+                idtoken: admintoken
+            }
+        })
             .then((resp) => {
-                axios.get(`${url}Administrators?$filter=floorId eq ${props.floorId}`)
+                axios.get(`${url}Administrators?$filter=floorId eq ${props.floorId}`, {
+                    headers: {
+                        idtoken: admintoken
+                    }
+                })
                     .then(resp => {
                         setAdministrators(resp.data.value)
                     })
@@ -106,38 +135,57 @@ function FloorsForm(props) {
 
     /*---------------------------------------------------------------------------------------*/
     useEffect(() => {
-        if (props.floorId) {
-            refAdministrator.current.addEventListener('change', (event) => {
-                setAdministrator(event.target.options[event.target._selectedIndex].value)
-            })
-            axios.get(`${url}Floors?$filter=ID eq ${props.floorId}`)
-                .then(resp => {
-                    setName(resp.data.value[0].name)
-                    setCapacity(resp.data.value[0].capacity)
-                    setOffice(resp.data.value[0].office_ID)
+        if (admintoken) {
+            if (props.floorId) {
+                refAdministrator.current.addEventListener('change', (event) => {
+                    setAdministrator(event.target.options[event.target._selectedIndex].value)
                 })
-            axios.get(`${url}SecurityGuards`)
-                .then(resp => {
-                    setSecurityGuards(resp.data.value)
-                    setAdministrator(resp.data.value[0].ID)
+                axios.get(`${url}Floors?$filter=ID eq ${props.floorId}`, {
+                    headers: {
+                        idtoken: admintoken
+                    }
                 })
+                    .then(resp => {
+                        setName(resp.data.value[0].name)
+                        setCapacity(resp.data.value[0].capacity)
+                        setOffice(resp.data.value[0].office_ID)
+                    })
+                axios.get(`${url}SecurityGuards`, {
+                    headers: {
+                        idtoken: admintoken
+                    }
+                })
+                    .then(resp => {
+                        setSecurityGuards(resp.data.value)
+                        setAdministrator(resp.data.value[0].ID)
+                    })
 
-            axios.get(`${url}Administrators?$filter=floorId eq ${props.floorId}`)
-                .then(resp => {
-                    setAdministrators(resp.data.value)
+                axios.get(`${url}Administrators?$filter=floorId eq ${props.floorId}`, {
+                    headers: {
+                        idtoken: admintoken
+                    }
                 })
-        }else{
-            setName('')
-            setCapacity('')
-            setOffice('')
-        }
-        axios.get(`${url}Offices`)
-            .then(resp => {
-                setOffices(resp.data.value)
-                if (!props.floorId)
-                    setOffice(resp.data.value[0].ID)
+                    .then(resp => {
+                        setAdministrators(resp.data.value)
+                    })
+            } else {
+                setName('')
+                setCapacity('')
+                setOffice('')
+            }
+            axios.get(`${url}Offices`, {
+                headers: {
+                    idtoken: admintoken
+                }
             })
-    }, [props.floorId])
+                .then(resp => {
+                    setOffices(resp.data.value)
+                    if (!props.floorId)
+                        setOffice(resp.data.value[0].ID)
+                })
+        }
+
+    }, [props.floorId, admintoken])
 
     useEffect(() => {
         refName.current.addEventListener('input', (event) => {
@@ -171,16 +219,16 @@ function FloorsForm(props) {
                     <Grid defaultSpan="XL12 L12 M12 S12">
                         <div style={{ marginTop: '1.2%', textAlign: 'right' }}>
                             <span style={{ textAlign: 'left', float: 'left', paddingTop: '0.5%' }}>
-                                <Title level="H3">{!props.floorId ? 'Novo Andar' : name}</Title>
+                                <Title level="H3">{!props.floorId ? 'Nova Localidade' : name}</Title>
                             </span>
                         </div>
                     </Grid>
                 }
                 footer={
                     <Grid defaultSpan="XL12 L12 M12 S12">
-                        <div style={{ textAlign: 'right', paddingTop:'8px' }}>
-                            {props.floorId ? <Button design="Emphasized" icon="edit" onClick={edit} style={{verticalAlign:'top'}}>Editar</Button> : <Button design="Emphasized" icon="add" onClick={create} style={{verticalAlign:'top'}}>Adicionar</Button>}
-                            <Button style={{marginLeft:'8px'}} design="Transparent" onClick={e => { props.dialogRef.current.close() }}>Cancelar</Button>
+                        <div style={{ textAlign: 'right', paddingTop: '8px' }}>
+                            {props.floorId ? <Button design="Emphasized" icon="edit" onClick={edit} style={{ verticalAlign: 'top' }}>Editar</Button> : <Button design="Emphasized" icon="add" onClick={create} style={{ verticalAlign: 'top' }}>Adicionar</Button>}
+                            <Button style={{ marginLeft: '8px' }} design="Transparent" onClick={e => { props.dialogRef.current.close() }}>Cancelar</Button>
                         </div>
                     </Grid>
                 }

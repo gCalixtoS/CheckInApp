@@ -21,14 +21,19 @@ import "@ui5/webcomponents/dist/Switch"
 
 import axios from 'axios'
 
-import { msalAuth } from '../../msal/MsalAuthProvider'
 import { getUserDetails } from '../../graph/GraphService'
+import { useSelector, shallowEqual } from "react-redux"
 
 import './CheckIn.css'
 
 function CheckIn() {
     Moment.locale('pt-br');
-    const url = process.env.REACT_APP_CHECKINAPI
+    const url = process.env.REACT_APP_CHECKINAPI_CAT
+
+    const { idtoken, accesstoken } = useSelector(state => ({
+        idtoken: state.authToken.idtoken,
+        accesstoken: state.authToken.accesstoken
+    }), shallowEqual)
 
     const refOffice = useRef()
     const refFloor = useRef()
@@ -43,98 +48,82 @@ function CheckIn() {
     const [date, setDate] = useState()
     const [user, setUser] = useState()
     const [availability, setAvailability] = useState()
-    const [toastMsg,setToastMsg] = useState()
+    const [toastMsg, setToastMsg] = useState()
 
     var getUser = async () => {
+        
         try {
-            const accessTokenRequest = {
-                scopes: ["user.read"]
-            }
-            var accessToken = null
-            try {
-                accessToken = await msalAuth.acquireTokenSilent(accessTokenRequest)
-            }
-            catch (error) {
-                accessToken = await msalAuth.acquireTokenPopup(accessTokenRequest)
-            }
-
-            if (accessToken) {
-                var user = await getUserDetails(accessToken)
-                setUser({
-                    user:user,
-                    isLoading: false,
-                    error: null
-                })
-
-            }
-            else {
-                setUser({
-                    user:null,
-                    isLoading: false,
-                    error: 'No Access Token...'
-                })
-            }
+            var user = await getUserDetails(accesstoken)
+            setUser({
+                user: user,
+                isLoading: false,
+                error: null
+            })
         }
         catch (err) {
-            var error = {}
-            if (typeof (err) === 'string') {
-                var errParts = err.split('|')
-                error = errParts.length > 1 ?
-                    { message: errParts[1], debug: errParts[0] } :
-                    { message: err }
-            } else {
-                error = {
-                    message: err.message,
-                    debug: JSON.stringify(err)
-                }
-            }
-            setUser({
-                user:{},
-                isLoading: false,
-                error: error
-            })
+            console.log(err)
         }
     }
 
     var getCheckIns = (userID) => {
-        axios.get(`${url}CheckinAppList?$filter=user eq '${userID}'&$orderby=ID desc`)
+        axios.get(`${url}CheckinAppList?$filter=user eq '${userID}'&$orderby=ID desc`, {
+            headers: {
+                idtoken: idtoken
+            }
+        })
             .then(resp => {
                 setCheckIns(resp.data.value)
             })
     }
 
     var getOffices = () => {
-        axios.get(`${url}ActiveOffices`)
-            .then(resp => { 
+        axios.get(`${url}ActiveOffices`,{
+            headers: {
+                idtoken: idtoken
+            }
+        })
+            .then(resp => {
                 setOffices(resp.data.value)
                 setOffice(resp.data.value[0].ID)
             })
     }
 
     var getAvailability = (availableDate, availableFloor) => {
-        if(availableDate !== undefined && availableFloor !== undefined){
-            axios.get(`${url}AvailableCapacity?$filter=date eq ${Moment(availableDate, 'DD/MM/YYYY').format('YYYY-MM-DD')} and ID eq ${availableFloor}`)
+        if (availableDate !== undefined && availableFloor !== undefined) {
+            axios.get(`${url}AvailableCapacity?$filter=date eq ${Moment(availableDate, 'DD/MM/YYYY').format('YYYY-MM-DD')} and ID eq ${availableFloor}`,{
+                headers: {
+                    idtoken: idtoken
+                }
+            })
                 .then(resp => {
-                    if (resp.data.value.length > 0){
+                    if (resp.data.value.length > 0) {
                         setAvailability(resp.data.value[0].AvailableCapacity)
-                    }else{
+                    } else {
                         getFloorCapacity(availableFloor)
                     }
                 })
         }
-        
+
     }
 
     var getFloorCapacity = floorCapacity => {
-        axios.get(`${url}ActiveFloors?$filter=ID eq ${floorCapacity}`)
-                .then(resp => {
-                    setAvailability(resp.data.value[0].capacity)
-                })
+        axios.get(`${url}ActiveFloors?$filter=ID eq ${floorCapacity}`,{
+            headers: {
+                idtoken: idtoken
+            }
+        })
+            .then(resp => {
+                setAvailability(resp.data.value[0].capacity)
+            })
     }
 
     var getFloors = officeFloor => {
-        if (officeFloor !== undefined){
-            axios.get(`${url}ActiveFloors?$filter=office_ID eq ${officeFloor}`)
+        if (officeFloor !== undefined) {
+            axios.get(`${url}ActiveFloors?$filter=office_ID eq ${officeFloor}`,{
+                headers: {
+                    idtoken: idtoken
+                }
+            })
                 .then(resp => {
                     setFloors(resp.data.value)
                     setFloor(resp.data.value[0].ID)
@@ -144,11 +133,15 @@ function CheckIn() {
 
     var create = () => {
         axios.post(`${url}CheckIn`, {
-            user : {ID: user.user.id, name: user.user.displayName, email: user.user.mail},
-            office_ID :  office,
-            floor_ID : floor,
-            date : Moment(date, 'DD/MM/YYYY').format('YYYY-MM-DD'),
-            active : 1
+            user: { ID: user.user.id, name: user.user.displayName, email: user.user.mail },
+            office_ID: office,
+            floor_ID: floor,
+            date: Moment(date, 'DD/MM/YYYY').format('YYYY-MM-DD'),
+            active: 1
+        }, {
+            headers: {
+                idtoken: idtoken
+            }
         }).then(resp => {
             getCheckIns(user.user.id)
             getAvailability(date, floor)
@@ -156,12 +149,12 @@ function CheckIn() {
             setToastMsg('Check-in Realizado!')
             document.getElementById('wcToastBasic').show()
         }).catch((error) => {
-            if (error.response.data.error.code === "400"){
+            if (error.response.data.error.code === "400") {
                 setToastMsg(error.response.data.error.message)
-            }else{
+            } else {
                 setToastMsg('Erro ao inserir o check-in, Tente novamente em alguns instantes.')
             }
-            
+
             document.getElementById('wcToastBasic').show()
         })
     }
@@ -173,7 +166,11 @@ function CheckIn() {
     }
 
     var cancel = (checkInId) => {
-        axios.delete(`${url}CheckIn/${checkInId}`)
+        axios.delete(`${url}CheckIn/${checkInId}`, {
+            headers: {
+                idtoken: idtoken
+            }
+        })
             .then((resp) => {
                 getCheckIns(user.user.id)
                 if (date !== undefined) {
@@ -183,14 +180,14 @@ function CheckIn() {
                 setToastMsg('Check-in Cancelado')
                 document.getElementById('wcToastBasic').show()
             })
-    }   
+    }
 
     //on floor change
-    useEffect(() =>{
+    useEffect(() => {
         refFloor.current.addEventListener('change', (event) => {
             setFloor(event.target.options[event.target._selectedIndex].value)
         })
-        return () =>{
+        return () => {
             refFloor.current.removeEventListener('change', (event) => {
                 setFloor(event.target.options[event.target._selectedIndex].value)
             })
@@ -198,11 +195,11 @@ function CheckIn() {
     })
 
     //on Office change
-    useEffect(() =>{
+    useEffect(() => {
         refOffice.current.addEventListener('change', (event) => {
             setOffice(event.target.options[event.target._selectedIndex].value)
         })
-        return () =>{
+        return () => {
             refOffice.current.removeEventListener('change', (event) => {
                 setOffice(event.target.options[event.target._selectedIndex].value)
             })
@@ -219,11 +216,11 @@ function CheckIn() {
 
 
     //onDate Change
-    useEffect(() =>{
+    useEffect(() => {
         refDate.current.addEventListener('change', (event) => {
             setDate(event.target.value)
         })
-        return () =>{
+        return () => {
             refDate.current.removeEventListener('change', (event) => {
                 setDate(event.target.value)
             })
@@ -232,13 +229,15 @@ function CheckIn() {
 
     //close message strip
     useEffect(() => {
-        getUser()
-        getOffices()
-        
-    }, [])
+
+        if(idtoken){
+            getUser()
+            getOffices()
+        }
+    }, [idtoken])
 
     useEffect(() => {
-        if (user){
+        if (user) {
             getCheckIns(user.user.id)
         }
     }, [user])
@@ -258,15 +257,15 @@ function CheckIn() {
                     </ui5-select>
                 </div>
                 <div>
-                    <ui5-label style={{ width: '100%' }} className="Labels" id="lblLocalidade" for="localidade" required>Andar: </ui5-label>
+                    <ui5-label style={{ width: '100%' }} className="Labels" id="lblLocalidade" for="localidade" required>Localidade: </ui5-label>
                     <ui5-select style={{ width: '100%' }} ref={refFloor} value={floor} class="select" id="localidade">
                         {
                             floors.map(optFloors => {
-                                if (optFloors.ID === floor){
+                                if (optFloors.ID === floor) {
                                     return (
                                         <ui5-option key={optFloors.ID} value={optFloors.ID} selected>{optFloors.name}</ui5-option>
                                     )
-                                }else{
+                                } else {
                                     return (
                                         <ui5-option key={optFloors.ID} value={optFloors.ID}>{optFloors.name}</ui5-option>
                                     )
@@ -279,13 +278,13 @@ function CheckIn() {
                     <ui5-label style={{ width: '100%' }} className="Labels" id="lblData" for="data" required>Data: </ui5-label>
                     <ui5-datepicker style={{ width: '100%' }} ref={refDate} value={date} id="data" min-date={new Date().toLocaleDateString('PT')} max-date={getMaxDate()} format-pattern="dd/MM/yyyy"></ui5-datepicker>
                 </div>
-                <div style={{textAlign:"right"}}>
-                    <div style={{float:'left', textAlign:'right'}}>
-                        <ui5-title level="H4" style={{marginTop:'8.5%'}}>{ availability !== undefined ? availability + ' Lugares Disponíveis' : ''}</ui5-title>
-                        <ui5-label className="Labels">{ availability !== undefined ? 'Para o dia ' + date  : ''}</ui5-label>
+                <div style={{ textAlign: "right" }}>
+                    <div style={{ float: 'left', textAlign: 'right' }}>
+                        <ui5-title level="H4" style={{ marginTop: '8.5%' }}>{availability !== undefined ? availability + ' Lugares Disponíveis' : ''}</ui5-title>
+                        <ui5-label className="Labels">{availability !== undefined ? 'Para o dia ' + date : ''}</ui5-label>
                     </div>
                     <br></br>
-                    { availability !== undefined &&  availability > 0 ? <ui5-button design="Emphasized" onClick={create}>Check-in</ui5-button> : <ui5-button design="Emphasized" disabled>Check-in</ui5-button> }
+                    {availability !== undefined && availability > 0 ? <ui5-button design="Emphasized" onClick={create}>Check-in</ui5-button> : <ui5-button design="Emphasized" disabled>Check-in</ui5-button>}
                 </div>
             </Grid>
             <Grid defaultSpan="XL12 L12 M12 S12">
@@ -310,7 +309,7 @@ function CheckIn() {
                             <span>Cancelar</span>
                         </ui5-table-column>
                         {
-                            checkIns.map((rowCheckIn, i ) => {
+                            checkIns.map((rowCheckIn, i) => {
                                 return (
                                     <ui5-table-row key={rowCheckIn.id}>
                                         <ui5-table-cell popin-text="Weight" demand-popin>
@@ -336,10 +335,9 @@ function CheckIn() {
             </Grid>
             <ui5-toast id="wcToastBasic">{toastMsg}</ui5-toast>
         </div>
-        
+
     )
 }
 
 export default CheckIn
 
-  

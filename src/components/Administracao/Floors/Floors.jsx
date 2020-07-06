@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react'
+import { useSelector, shallowEqual } from "react-redux"
 import axios from 'axios'
 
 import { Grid } from '@ui5/webcomponents-react/lib/Grid'
@@ -18,7 +19,12 @@ import "@ui5/webcomponents/dist/TableRow"
 import "@ui5/webcomponents/dist/TableCell"
 
 function Floors() {
-    const url = process.env.REACT_APP_CHECKINAPI
+    const url = process.env.REACT_APP_CHECKINAPI_ADM
+
+    const { admintoken } = useSelector(state => ({
+        admintoken: state.authToken.admintoken
+    }), shallowEqual)
+
 
     const [floors, setFloors] = useState([])
     const [floorId, setFloorId] = useState(false)
@@ -30,14 +36,18 @@ function Floors() {
     var putStatus = (checked, floorId) => {
         axios.put(`${url}Floors/${floorId}`, {
             active : checked ? 1 : 0
+        },{
+            headers: {
+                idtoken: admintoken
+            }
         }).then(resp => {
-            setToastMsg( checked ?'Andar Ativado!' :'Andar Desativado!')
+            setToastMsg( checked ?'Localidade Ativada!' :'Localidade Desativada!')
             document.getElementById('toastFloors').show()
         }).catch((error) => {
             if (error.response.data.error.code === "400") {
                 setToastMsg(error.response.data.error.message)
             } else {
-                setToastMsg('Erro ao atualizar o andar, Tente novamente em alguns instantes.')
+                setToastMsg('Erro ao atualizar a localidade, tente novamente em alguns instantes.')
             }
 
             document.getElementById('toastFloors').show()
@@ -48,18 +58,18 @@ function Floors() {
         <div>
             <Grid defaultSpan="XL12 L12 M12 S12">
                 <div>
-                    <BreadcrumbBar links={[{ text: 'Administração', href: `${process.env.REACT_APP_ROOT}Administracao` }]} currentLocation="Andares" />
+                    <BreadcrumbBar links={[{ text: 'Administração', href: `${process.env.REACT_APP_ROOT}Administracao` }]} currentLocation="Localidades" />
                 </div>
                 <div>
-                    <SearchBar searchObject="FloorsList" searchField="floorName" searchPlaceholder="andar" setResult={(data) => setFloors(data)} refresh={refresh}/>
+                    <SearchBar searchObject="FloorsList" searchField="floorName" searchPlaceholder="localidade" setResult={(data) => setFloors(data)} refresh={refresh}/>
                 </div>
                 <div style={{ textAlign: "right" }}>
-                    <CreateButton placeholder="Andar" refDialog={refFormDialog} setState={ (id) => setFloorId(id)}/>
+                    <CreateButton placeholder="Localidade" refDialog={refFormDialog} setState={ (id) => setFloorId(id)}/>
                 </div>
                 <div>
                     <ui5-table class="demo-table" no-data-text="Nenhum escritório foi encontrado. Clique em adicionar para criar um novo." show-no-data>
                         <ui5-table-column slot="columns">
-                            <span>Andar</span>
+                            <span>Localidade</span>
                         </ui5-table-column>
 
                         <ui5-table-column slot="columns" popin-text="Supplier">

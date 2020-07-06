@@ -6,9 +6,14 @@ import "@ui5/webcomponents/dist/Button"
 import { LineChart } from '@ui5/webcomponents-react-charts/lib/next/LineChart'
 import { Grid } from '@ui5/webcomponents-react/lib/Grid'
 
+import { useSelector, shallowEqual } from "react-redux"
 
 function Report() {
-    const url = process.env.REACT_APP_CHECKINAPI
+    const url = process.env.REACT_APP_CHECKINAPI_ADM
+
+    const { admintoken } = useSelector(state => ({
+        admintoken: state.authToken.admintoken
+    }), shallowEqual)
 
     const refFloor = useRef()
 
@@ -19,15 +24,23 @@ function Report() {
     const [floor, setFloor] = useState([])
 
     useEffect(() => {
-        axios.get(`${url}ActiveFloors`)
+        axios.get(`${url}Floors`, {
+            headers: {
+                idtoken: admintoken
+            }
+        })
             .then(resp => {
                 setFloors(resp.data.value)
                 setFloor(resp.data.value[0].ID)
             })
-    }, [])
+    }, [admintoken])
 
     useEffect(() => {
-        axios.get(`${url}OccupiedCapacity?$filter=ID eq ${floor}&$orderby=date asc`)
+        axios.get(`${url}OccupiedCapacity?$filter=ID eq ${floor}&$orderby=date asc`, {
+            headers: {
+                idtoken: admintoken
+            }
+        })
             .then(resp => {
                 let officesArray = []
                 let mArray = []
@@ -70,7 +83,7 @@ function Report() {
         <div>
             <Grid defaultSpan="XL12 L12 M12 S12">
                 <div>
-                    <ui5-label style={{ width: '100%' }} className="Labels" id="lblLocalidade" for="localidade" required>Andar: </ui5-label>
+                    <ui5-label style={{ width: '100%' }} className="Labels" id="lblLocalidade" for="localidade" required>Localidade: </ui5-label>
                     <ui5-select style={{ width: '100%' }} ref={refFloor} value={floor} class="select" id="localidade">
                         {
                             floors.map(optFloors => {

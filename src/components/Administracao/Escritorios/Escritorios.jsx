@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { useSelector, shallowEqual } from "react-redux"
 import axios from 'axios'
 
 import "@ui5/webcomponents/dist/Table"
@@ -20,7 +21,11 @@ import EscritoriosForms from './EscritoriosForm'
 
 
 function Escritorios() {
-    const url = process.env.REACT_APP_CHECKINAPI
+    const url = process.env.REACT_APP_CHECKINAPI_ADM
+
+    const { admintoken } = useSelector(state => ({
+        admintoken: state.authToken.admintoken
+    }), shallowEqual)
 
     const refForm = useRef()
 
@@ -31,6 +36,10 @@ function Escritorios() {
     var putStatus = (checked, floorId) => {
         axios.put(`${url}Offices/${floorId}`, {
             active: checked ? 1 : 0
+        },{
+            headers: {
+                idtoken: admintoken
+            }
         }).then(resp => {
             setToastMsg(checked ? 'Escritório Ativado!' : 'Escritório Desativado!')
             document.getElementById('toastEscritorio').show()
@@ -46,7 +55,11 @@ function Escritorios() {
     }
 
     var getOffices = () => {
-        axios.get(`${url}Offices?$orderby=ID desc`)
+        axios.get(`${url}Offices?$orderby=ID desc`,{
+            headers: {
+                idtoken: admintoken
+            }
+        })
             .then((resp) => {
                 setOffices(resp.data.value)
             })
@@ -59,7 +72,11 @@ function Escritorios() {
 
     var filter = (search) => {
         if (search !== '') {
-            axios.get(`${url}Offices?$filter=contains(name,'${search}')`)
+            axios.get(`${url}Offices?$filter=contains(name,'${search}')`,{
+                headers: {
+                    idtoken: admintoken
+                }
+            })
                 .then((resp) => {
                     setOffices(resp.data.value)
                 })
@@ -70,8 +87,11 @@ function Escritorios() {
     }
 
     useEffect(() => {
-        getOffices()
-    }, [])
+        if(admintoken){
+            getOffices()
+        }
+        
+    }, [admintoken])
 
     return (
         <div>

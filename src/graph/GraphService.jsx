@@ -6,7 +6,7 @@ function getGraphClient(accessToken) {
         // Use the provided access token to authenticate
         // requests
         authProvider: (done) => {
-            done(null, accessToken.accessToken);
+            done(null, accessToken);
         }
     });
 

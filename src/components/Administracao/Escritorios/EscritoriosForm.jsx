@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
+import { useSelector, shallowEqual } from "react-redux"
 import axios from 'axios'
 
 import "@ui5/webcomponents/dist/Table"
@@ -17,7 +18,11 @@ import { Switch } from '@ui5/webcomponents-react/lib/Switch'
 import { Button } from '@ui5/webcomponents-react/lib/Button'
 
 function EscritoriosForm(props) {
-    const url = process.env.REACT_APP_CHECKINAPI
+    const url = process.env.REACT_APP_CHECKINAPI_ADM
+
+    const { admintoken } = useSelector(state => ({
+        admintoken: state.authToken.admintoken
+    }), shallowEqual)
 
     const refName = useRef()
     const refCode = useRef()
@@ -36,7 +41,14 @@ function EscritoriosForm(props) {
             localization: localization,
             code: code,
             active: 1
+        },{
+            headers: {
+                idtoken: admintoken
+            }
         }).then(resp => {
+            setName('')
+            setCode('')
+            setLocalization('')
             setToastMsg('Escritório Cadastrado!')
             props.dialogRef.current.close()
             document.getElementById('toastEscritorioForm').show()
@@ -57,6 +69,10 @@ function EscritoriosForm(props) {
             name: name,
             localization: localization,
             code: code
+        },{
+            headers: {
+                idtoken: admintoken
+            }
         }).then(resp => {
             setToastMsg('Escritório Atualizado!')
             props.dialogRef.current.close()
@@ -76,14 +92,18 @@ function EscritoriosForm(props) {
     var putStatus = (checked, floorId) => {
         axios.put(`${url}Floors/${floorId}`, {
             active : checked ? 1 : 0
+        },{
+            headers: {
+                idtoken: admintoken
+            }
         }).then(resp => {
-            setToastMsg( checked ?'Andar Ativado!' :'Andar Desativado!')
+            setToastMsg( checked ?'Localidade Ativada!' :'Localidade Desativada!')
             document.getElementById('toastEscritorioForm').show()
         }).catch((error) => {
             if (error.response.data.error.code === "400") {
                 setToastMsg(error.response.data.error.message)
             } else {
-                setToastMsg('Erro ao atualizar o andar, Tente novamente em alguns instantes.')
+                setToastMsg('Erro ao atualizar a localidade, tente novamente em alguns instantes.')
             }
 
             document.getElementById('toastEscritorioForm').show()
@@ -92,14 +112,22 @@ function EscritoriosForm(props) {
 
     useEffect(() => {
         if (props.officeId) {
-            axios.get(`${url}Offices?$filter=ID eq ${props.officeId}`)
+            axios.get(`${url}Offices?$filter=ID eq ${props.officeId}`,{
+                headers: {
+                    idtoken: admintoken
+                }
+            })
                 .then(resp => {
                     setName(resp.data.value[0].name)
                     setCode(resp.data.value[0].code)
                     setLocalization(resp.data.value[0].localization)
                 })
             
-            axios.get(`${url}Floors?$filter=office_ID eq ${props.officeId}`)
+            axios.get(`${url}Floors?$filter=office_ID eq ${props.officeId}`,{
+                headers: {
+                    idtoken: admintoken
+                }
+            })
                 .then(resp => {
                     setFloors(resp.data.value)
                 })
@@ -174,12 +202,12 @@ function EscritoriosForm(props) {
                     props.officeId && (
                         <Grid defaultSpan="XL12 L12 M12 S12">
                             <div>
-                                <Title level="H5">Andares</Title>
+                                <Title level="H5">Localidades</Title>
                             </div>
                             <div>
-                                <ui5-table class="demo-table" no-data-text="Nenhum andar foi encontrado para o escritório." show-no-data>
+                                <ui5-table class="demo-table" no-data-text="Nenhuma localidade foi encontrado para o escritório." show-no-data>
                                     <ui5-table-column slot="columns">
-                                        <span>Andar</span>
+                                        <span>Localidade</span>
                                     </ui5-table-column>
                                     <ui5-table-column slot="columns" popin-text="Supplier">
                                         <span>Capacidade</span>

@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
+import { useSelector, shallowEqual } from "react-redux"
 import axios from 'axios'
 
 import "@ui5/webcomponents/dist/Table"
@@ -17,7 +18,11 @@ import { Toast } from '@ui5/webcomponents-react/lib/Toast'
 import { Button } from '@ui5/webcomponents-react/lib/Button'
 
 function AdministratorsForm(props) {
-    const url = process.env.REACT_APP_CHECKINAPI
+    const url = process.env.REACT_APP_CHECKINAPI_ADM
+
+    const { admintoken } = useSelector(state => ({
+        admintoken: state.authToken.admintoken
+    }), shallowEqual)
 
     const refEmail = useRef()
     const refName = useRef()
@@ -36,6 +41,10 @@ function AdministratorsForm(props) {
         axios.put(`${url}SecurityGuards/${props.administratorId}`, {
             name: name,
             email: email
+        },{
+            headers: {
+                idtoken: admintoken
+            }
         }).then(resp => {
 
             props.dialogRef.current.close()
@@ -55,6 +64,10 @@ function AdministratorsForm(props) {
             name: name,
             email: email,
             active: 1
+        },{
+            headers: {
+                idtoken: admintoken
+            }
         }).then(resp => {
             setName('')
             setEmail('')
@@ -77,8 +90,16 @@ function AdministratorsForm(props) {
         axios.post(`${url}FloorSecurityGuards`,{
             floor_ID : floor,
             securityGuard_ID : props.administratorId
+        },{
+            headers: {
+                idtoken: admintoken
+            }
         }).then((resp) => {
-            axios.get(`${url}Administrators?$filter=securityGuardId eq ${props.administratorId}`)
+            axios.get(`${url}Administrators?$filter=securityGuardId eq ${props.administratorId}`,{
+                headers: {
+                    idtoken: admintoken
+                }
+            })
                 .then(resp => {
                     setSecurityGuardsFloors(resp.data.value)
                 })
@@ -86,9 +107,17 @@ function AdministratorsForm(props) {
     }
 
     var deleteFloor = (floorId) => {
-        axios.delete(`${url}FloorSecurityGuards/${floorId}`)
+        axios.delete(`${url}FloorSecurityGuards/${floorId}`,{
+            headers: {
+                idtoken: admintoken
+            }
+        })
             .then((resp) => {
-                axios.get(`${url}Administrators?$filter=securityGuardId eq ${props.administratorId}`)
+                axios.get(`${url}Administrators?$filter=securityGuardId eq ${props.administratorId}`,{
+                    headers: {
+                        idtoken: admintoken
+                    }
+                })
                     .then(resp => {
                         setSecurityGuardsFloors(resp.data.value)
                     })
@@ -101,18 +130,30 @@ function AdministratorsForm(props) {
             refFloor.current.addEventListener('change', (event) => {
                 setFloor(event.target.options[event.target._selectedIndex].value)
             })
-            axios.get(`${url}SecurityGuards?$filter=ID eq ${props.administratorId}`)
+            axios.get(`${url}SecurityGuards?$filter=ID eq ${props.administratorId}`,{
+                headers: {
+                    idtoken: admintoken
+                }
+            })
                 .then(resp => {
                     setName(resp.data.value[0].name)
                     setEmail(resp.data.value[0].email)
                 })
-            axios.get(`${url}Floors`)
+            axios.get(`${url}Floors`,{
+                headers: {
+                    idtoken: admintoken
+                }
+            })
                 .then(resp => {
                     setFloors(resp.data.value)
                     setFloor(resp.data.value[0].ID)
                 })
 
-            axios.get(`${url}Administrators?$filter=securityGuardId eq ${props.administratorId}`)
+            axios.get(`${url}Administrators?$filter=securityGuardId eq ${props.administratorId}`,{
+                headers: {
+                    idtoken: admintoken
+                }
+            })
                 .then(resp => {
                     setSecurityGuardsFloors(resp.data.value)
                 })
@@ -177,10 +218,10 @@ function AdministratorsForm(props) {
                     props.administratorId && (
                         <Grid defaultSpan="XL12 L12 M12 S12">
                             <div>
-                                <Title level="H5">Andares</Title>
+                                <Title level="H5">Localidades</Title>
                             </div>
                             <div>
-                                <Label style={{ width: '100%' }} className="Labels" id="lblFloor" for="floor" required>Adicionar Andar: </Label>
+                                <Label style={{ width: '100%' }} className="Labels" id="lblFloor" for="floor" required>Adicionar Localidade: </Label>
                                 <ui5-select style={{ width: '96%' }} value={floor} ref={refFloor} class="select" id="floor" aria-required="true" aria-labelledby="myLabel3">
                                     {
                                         floors.map((floor) => {
@@ -193,7 +234,7 @@ function AdministratorsForm(props) {
                                 <ui5-button design="Emphasized" icon="add" style={{ verticalAlign : 'middle', float:"right"}} onClick={addFloor}></ui5-button>
                             </div>
                             <div>
-                                <ui5-table class="demo-table" no-data-text="Nenhum Andar foi encontrado." show-no-data>
+                                <ui5-table class="demo-table" no-data-text="Nenhuma localidade foi encontrada." show-no-data>
                                     <ui5-table-column slot="columns">
                                         <span>Nome</span>
                                     </ui5-table-column>
