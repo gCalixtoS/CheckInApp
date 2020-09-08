@@ -21,10 +21,10 @@ export default props => {
         <BrowserRouter>
             <Switch>
                 <Route path='/CheckIn' component={CheckIn}></Route>
-                <Route path='/Report' component={Report}></Route>
                 {
                     sysadmin !== "false" && (
                         <div>
+                            <Route path='/Report' component={Report}></Route>
                             <Route exact path='/Administracao' component={Administracao}></Route>
                             <Route path='/Administracao/Escritorios' component={Escritorios}></Route>
                             <Route path='/Administracao/Localidades' component={Floors}></Route>
