@@ -21,6 +21,7 @@ export default props => {
         <BrowserRouter>
             <Switch>
                 <Route path='/CheckIn' component={CheckIn}></Route>
+                <Route exact path='/' component={CheckIn}></Route>
                 {
                     sysadmin !== "false" && (
                         <div>
