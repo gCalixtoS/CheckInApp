@@ -84,7 +84,8 @@ function CheckIn() {
         })
             .then(resp => {
                 setOffices(resp.data.value)
-                setOffice(resp.data.value[0].ID)
+                if (resp.data.value.length > 0 )
+                    setOffice(resp.data.value[0].ID)
             })
     }
 
@@ -126,7 +127,8 @@ function CheckIn() {
             })
                 .then(resp => {
                     setFloors(resp.data.value)
-                    setFloor(resp.data.value[0].ID)
+                    if (resp.data.value.length > 0 )
+                        setFloor(resp.data.value[0].ID)
                 })
         }
     }
